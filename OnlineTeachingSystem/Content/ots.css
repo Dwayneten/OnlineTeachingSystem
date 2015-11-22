@@ -92,8 +92,8 @@ body {
 }
 @media (min-width: 768px) {
   .main {
-    padding-right: 40px;
-    padding-left: 40px;
+    padding-right: 60px;
+    padding-left: 60px;
   }
 }
 .main .page-header {
@@ -124,7 +124,7 @@ body {
 
 
 /*
- * Sign up
+ * Signup page
  */
 .signup-container{
     margin-top: 70px;
@@ -140,4 +140,62 @@ body {
 }
 .signup-container .form-group {
     margin-top: 20px;
+}
+
+
+/*
+* Article Page
+*/
+
+/*
+ * Article Globals
+ */
+.article {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: #555;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.article h1, .article .h1,
+.article h2, .article .h2,
+.article h3, .article .h3,
+.article h4, .article .h4,
+.article h5, .article .h5,
+.article h6, .article .h6 {
+  margin-top: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  color: #333;
+}
+
+/*
+ * Article name and description
+ */
+
+.article-header {
+  padding-top: 20px;
+  /*padding-bottom: 20px;*/
+}
+.article-title {
+  margin-top: 30px;
+  margin-bottom: 0;
+  font-size: 60px;
+  font-weight: normal;
+}
+.article-description {
+  font-size: 20px;
+  color: #999;
+}
+
+/*
+ * Article Content
+ */
+
+.article-box {
+  margin-bottom: 60px;
+}
+.article-title {
+  margin-bottom: 5px;
+  font-size: 40px;
 }
