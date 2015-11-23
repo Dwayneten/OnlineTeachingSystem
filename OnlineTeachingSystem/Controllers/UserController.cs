@@ -22,11 +22,15 @@ namespace OnlineTeachingSystem.Controllers
         }
 
         [NavStatusFilter]
-        public ActionResult TrySignUp(UserInfo userInfo)
+        public ActionResult TrySignUp()
         {
             SignUpViewModel signUpViewModel = new SignUpViewModel();
             UserInfoBusinessLayer userInfoBusinessLayer = new UserInfoBusinessLayer();
             List<UserInfo> userInfoList = userInfoBusinessLayer.GetUserInfoList();
+            UserInfo userInfo = new UserInfo();
+            userInfo.NickName = Request.Form["NickName"];
+            userInfo.Mail = Request.Form["Mail"];
+            userInfo.Password = Request.Form["Password"];
 
             bool SignUpFlag = true;
 
