@@ -130,7 +130,9 @@
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Models\UserInfoBusinessLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
+    <Compile Include="ViewModels\NavStatusViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -180,7 +182,7 @@
     <Content Include="Views\Shared\_OTSLayout.cshtml" />
     <Content Include="Views\User\SignUp.cshtml" />
     <Content Include="Views\Article\Test.cshtml" />
-    <Content Include="Views\Shared\UserStatus.cshtml" />
+    <Content Include="Views\Shared\NavStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

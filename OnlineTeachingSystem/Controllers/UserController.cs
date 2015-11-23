@@ -10,7 +10,22 @@ namespace OnlineTeachingSystem.Controllers
 {
     public class UserController : Controller
     {
-        public ActionResult SignUp(UserInfo userInfo)
+        public ActionResult SignUp()
+        {
+            // init message
+            SignUpViewModel signUpViewModel = new SignUpViewModel();
+            signUpViewModel.Message = "";
+
+            signUpViewModel.NavStatusData = new NavStatusViewModel();
+            signUpViewModel.NavStatusData.LeftText = "Log in";
+            signUpViewModel.NavStatusData.LeftLink = "../LogIn";
+            signUpViewModel.NavStatusData.RightText = "Sign up";
+            signUpViewModel.NavStatusData.RightLink = "#";
+
+            return View("SignUp", signUpViewModel);
+        }
+
+        public ActionResult TrySignUp(UserInfo userInfo)
         {
             SignUpViewModel signUpViewModel = new SignUpViewModel();
             UserInfoBusinessLayer userInfoBusinessLayer = new UserInfoBusinessLayer();
@@ -18,29 +33,30 @@ namespace OnlineTeachingSystem.Controllers
 
             bool SignUpFlag = true;
 
-            foreach(UserInfo ui in userInfoList)
+            foreach (UserInfo ui in userInfoList)
             {
-                if(ui.Mail == userInfo.Mail)
+                if (ui.Mail == userInfo.Mail)
                 {
                     SignUpFlag = false;
                     break;
                 }
             }
 
-            if(SignUpFlag == true)
+            if (SignUpFlag == true)
             {
                 userInfoBusinessLayer.SignUp(userInfo);
+                signUpViewModel.Message = "Signup successfully!";
             }
             else
             {
-                signUpViewModel.ErrorMessage = "Email is invalid or already taken";
+                signUpViewModel.Message = "Email is invalid or already taken";
             }
 
             signUpViewModel.NickName = userInfo.NickName;
             signUpViewModel.Password = userInfo.Password;
             signUpViewModel.Mail = signUpViewModel.Mail;
 
-            return View("SignUp",signUpViewModel);
+            return View("SignUp", signUpViewModel);
         }
     }
 }

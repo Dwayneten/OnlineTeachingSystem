@@ -1,6 +1,5 @@
-﻿@{
-    ViewBag.Title = "SignUp";
-}
+﻿@using OnlineTeachingSystem.ViewModels
+@model SignUpViewModel
 <div class="row">
     <div class="col-sm-9">
         <h1 class="">Join Online Teaching System</h1>
@@ -9,22 +8,23 @@
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mi justo, vehicula eget pellentesque sed, accumsan ut neque. Duis quis pellentesque lorem, sed egestas nulla. Quisque tincidunt volutpat.
         <div class="container-fluid">
             <div class="signup-container center-block">
-                <form class="">
+                <form class="" action="/User/TrySignUp" method="post">
                     <div class="form-group">
                         <label for="inputEmail">Email address</label>
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" required="" autofocus="">
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" required="" autofocus="" name="Mail">
                         <p>Lorem ipsum dolor sit amet,  cras amet.</p>
                     </div>
                     <div class="form-group">
                         <label for="inputName">User Name</label>
-                        <input type="text" class="form-control" id="inputName" placeholder="Nick Name" required="">
+                        <input type="text" class="form-control" id="inputName" placeholder="Nick Name" required="" name="NickName">
                         <p>Lorem ipsum dolor sit amet,  cras amet.</p>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword">Password</label>
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" required="">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" required="" name="Password">
                         <p>Lorem ipsum dolor sit amet,  cras amet.</p>
                     </div>
+                    <p>@Model.Message</p>
                     <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="">Sign up</button>
                 </form>
             </div>
