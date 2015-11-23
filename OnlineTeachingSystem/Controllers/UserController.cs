@@ -5,26 +5,23 @@ using System.Web;
 using System.Web.Mvc;
 using OnlineTeachingSystem.Models;
 using OnlineTeachingSystem.ViewModels;
+using OnlineTeachingSystem.Filter;
 
 namespace OnlineTeachingSystem.Controllers
 {
     public class UserController : Controller
     {
+        [NavStatusFilter]
         public ActionResult SignUp()
         {
             // init message
             SignUpViewModel signUpViewModel = new SignUpViewModel();
             signUpViewModel.Message = "";
 
-            signUpViewModel.NavStatusData = new NavStatusViewModel();
-            signUpViewModel.NavStatusData.LeftText = "Log in";
-            signUpViewModel.NavStatusData.LeftLink = "../LogIn";
-            signUpViewModel.NavStatusData.RightText = "Sign up";
-            signUpViewModel.NavStatusData.RightLink = "#";
-
             return View("SignUp", signUpViewModel);
         }
 
+        [NavStatusFilter]
         public ActionResult TrySignUp(UserInfo userInfo)
         {
             SignUpViewModel signUpViewModel = new SignUpViewModel();

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OnlineTeachingSystem.Filter;
+using OnlineTeachingSystem.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,10 @@ namespace OnlineTeachingSystem.Controllers
 {
     public class ArticleController : Controller
     {
+        [NavStatusFilter]
         public ActionResult Test()
         {
-            return View("Test");
+            return View("Test", new BaseViewModel());
         }
     }
 }
