@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using OnlineTeachingSystem.Models;
 using OnlineTeachingSystem.ViewModels;
 using OnlineTeachingSystem.Filter;
+using System.Web.Security;
 
 namespace OnlineTeachingSystem.Controllers
 {
@@ -47,18 +48,6 @@ namespace OnlineTeachingSystem.Controllers
                 }
             }
 
-            if (SignUpFlag == true)
-            {
-                userInfoBusinessLayer.SignUp(userInfo);
-                signUpViewModel.Message = "Signup successfully!";
-                signUpViewModel.AlertType = "success";
-            }
-            else
-            {
-                signUpViewModel.Message = "Email is invalid or already taken";
-                signUpViewModel.AlertType = "danger";
-            }
-
             signUpViewModel.NickName = userInfo.NickName;
             signUpViewModel.Password = userInfo.Password;
             signUpViewModel.Mail = signUpViewModel.Mail;
@@ -66,7 +55,28 @@ namespace OnlineTeachingSystem.Controllers
             signUpViewModel.SideBarData = new SideBarViewModel();
             signUpViewModel.SideBarData.CurrentIndex = 0;
 
-            return View("SignUp", signUpViewModel);
+            if (SignUpFlag == true)
+            {
+                userInfoBusinessLayer.SignUp(userInfo);
+                signUpViewModel.Message = "Signup successfully!";
+                signUpViewModel.AlertType = "success";
+                HttpContext.Session["User"]= userInfo.Mail;
+                //登录成功界面 
+                return View("");
+            }
+            else
+            {
+                signUpViewModel.Message = "Email is invalid or already taken";
+                signUpViewModel.AlertType = "danger";
+                return View("SignUp");
+            }
+            
+        }
+
+        public ActionResult Logout()
+        {
+            HttpContext.Session["User"] = "";
+            return View("");
         }
     }
 }
