@@ -61,14 +61,15 @@ namespace OnlineTeachingSystem.Controllers
                 signUpViewModel.Message = "Signup successfully!";
                 signUpViewModel.AlertType = "success";
                 HttpContext.Session["User"]= userInfo.Mail;
-                //登录成功界面 
-                return View("");
+                 
+                return View("SignUp", signUpViewModel);
             }
             else
             {
                 signUpViewModel.Message = "Email is invalid or already taken";
                 signUpViewModel.AlertType = "danger";
-                return View("SignUp");
+
+                return View("SignUp", signUpViewModel);
             }
             
         }

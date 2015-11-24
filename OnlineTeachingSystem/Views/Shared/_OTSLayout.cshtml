@@ -11,6 +11,7 @@
     <link type="text/css" rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="~/Content/ots.css" />
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("/Scripts/ots.js")
 </head>
 <body>
     @{
@@ -30,7 +31,6 @@
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("/Scripts/ots.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -15,8 +15,13 @@ function addLoadEvent(func) {
 };
 function showAlert() {
     var a = document.getElementsByClassName('alert')[0];
-    if (a.innerText != "")
+    if (a.innerText != "") {
         a.style.display = "block";
+        a.style.padding = "5px 15px 5px 15px";
+        if (a.classList.contains('alert-success')) {
+            setTimeout("javascript:location.href='/'", 2000);
+        }
+    }
 }
 function showSideBarActive() {
     var a = document.getElementsByClassName('nav-sidebar')[0];
