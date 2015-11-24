@@ -8,27 +8,27 @@
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mi justo, vehicula eget pellentesque sed, accumsan ut neque. Duis quis pellentesque lorem, sed egestas nulla. Quisque tincidunt volutpat.
         <div class="container-fluid">
             <div class="signup-container center-block">
-                <form class="" action="/User/TrySignUp" method="post">
+                <form class="" action="/User/TrySignUp" method="post" id="signupForm">
                     <div class="form-group">
-                        <label for="inputEmail">Email address</label>
+                        <label class="control-label" for="inputEmail">Email Address</label>
                         <input type="email" class="form-control" id="inputEmail" placeholder="Email" required="" autofocus="" name="Mail">
                         <p>Lorem ipsum dolor sit amet,  cras amet.</p>
                     </div>
                     <div class="form-group">
-                        <label for="inputName">User Name</label>
+                        <label class="control-label" for="inputName">Nick Name</label>
                         <input type="text" class="form-control" id="inputName" placeholder="Nick Name" required="" name="NickName">
                         <p>Lorem ipsum dolor sit amet,  cras amet.</p>
                     </div>
                     <div class="form-group">
-                        <label for="inputPassword">Password</label>
+                        <label class="control-label" for="inputPassword">Password</label>
                         <input type="password" class="form-control" id="inputPassword" placeholder="Password" required="" name="Password">
                         <p>Lorem ipsum dolor sit amet,  cras amet.</p>
                     </div>
                     <div class="alert alert-@Model.AlertType" style="display:none">@Model.Message</div>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="">Sign up</button>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return checkSignUp();">Sign up</button>
+                    <script>showAlert();</script>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<script>showAlert();</script>
