@@ -11,5 +11,6 @@ namespace OnlineTeachingSystem.ViewModels
         public string Password { get; set; }
         public string Mail { get; set; }
         public string Message { get; set; }
+        public string AlertType { get; set; }
     }
 }

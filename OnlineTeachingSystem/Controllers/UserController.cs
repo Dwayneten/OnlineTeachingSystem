@@ -17,6 +17,7 @@ namespace OnlineTeachingSystem.Controllers
             // init message
             SignUpViewModel signUpViewModel = new SignUpViewModel();
             signUpViewModel.Message = "";
+            signUpViewModel.AlertType = "success";
 
             return View("SignUp", signUpViewModel);
         }
@@ -47,10 +48,12 @@ namespace OnlineTeachingSystem.Controllers
             {
                 userInfoBusinessLayer.SignUp(userInfo);
                 signUpViewModel.Message = "Signup successfully!";
+                signUpViewModel.AlertType = "success";
             }
             else
             {
                 signUpViewModel.Message = "Email is invalid or already taken";
+                signUpViewModel.AlertType = "danger";
             }
 
             signUpViewModel.NickName = userInfo.NickName;
