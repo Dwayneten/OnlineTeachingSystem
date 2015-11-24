@@ -24,6 +24,7 @@ function showSideBarActive() {
     a.children[currentIndex].className += ' active';
 };
 showSideBarActive();
+<<<<<<< HEAD
 function checkSignUp() {
     var form = $('#signupForm')[0];
     var mail = $('#inputEmail')[0].value;
@@ -61,3 +62,5 @@ function checkSignUp() {
 
     return ok == 1 ? true : false;
 }
+=======
+>>>>>>> 8113c3e62c62723306295d1c80d7d4a28d29c252

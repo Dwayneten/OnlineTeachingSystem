@@ -8,15 +8,20 @@ using System.Web.Mvc;
 
 namespace OnlineTeachingSystem.Controllers
 {
+
     public class ArticleController : Controller
     {
+        [HttpPost]
         [NavStatusFilter]
         public ActionResult Test()
         {
             BaseViewModel bvm = new BaseViewModel();
             bvm.SideBarData = new SideBarViewModel();
             bvm.SideBarData.CurrentIndex = 1;
+            // string s = HttpContext.Session["User"].ToString();
             return View("Test", bvm);
         }
+        
+
     }
 }
