@@ -11,7 +11,6 @@ namespace OnlineTeachingSystem.Controllers
 
     public class ArticleController : Controller
     {
-        [HttpPost]
         [NavStatusFilter]
         public ActionResult Test()
         {
@@ -21,7 +20,5 @@ namespace OnlineTeachingSystem.Controllers
             // string s = HttpContext.Session["User"].ToString();
             return View("Test", bvm);
         }
-        
-
     }
 }
