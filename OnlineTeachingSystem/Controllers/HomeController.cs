@@ -13,7 +13,10 @@ namespace OnlineTeachingSystem.Controllers
         [NavStatusFilter]
         public ActionResult Index()
         {
-            return View(new BaseViewModel());
+            BaseViewModel bvm = new BaseViewModel();
+            bvm.SideBarData = new SideBarViewModel();
+            bvm.SideBarData.CurrentIndex = 0;
+            return View(bvm);
         }
 
         [NavStatusFilter]

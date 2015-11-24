@@ -9,9 +9,14 @@
         }
     }
 };
-function hideAlert() {
+function showAlert() {
     var a = document.getElementsByClassName('alert')[0];
     if (a.innerText != "")
         a.style.display = "block";
 }
-hideAlert();
+function showSideBarActive() {
+    var a = document.getElementsByClassName('nav-sidebar')[0];
+    var currentIndex = a.lastElementChild.innerText[0] - '0';
+    a.children[currentIndex].className += ' active';
+};
+showSideBarActive();

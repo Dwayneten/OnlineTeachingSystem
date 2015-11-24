@@ -19,6 +19,9 @@ namespace OnlineTeachingSystem.Controllers
             signUpViewModel.Message = "";
             signUpViewModel.AlertType = "success";
 
+            signUpViewModel.SideBarData = new SideBarViewModel();
+            signUpViewModel.SideBarData.CurrentIndex = 0;
+
             return View("SignUp", signUpViewModel);
         }
 
@@ -59,6 +62,9 @@ namespace OnlineTeachingSystem.Controllers
             signUpViewModel.NickName = userInfo.NickName;
             signUpViewModel.Password = userInfo.Password;
             signUpViewModel.Mail = signUpViewModel.Mail;
+
+            signUpViewModel.SideBarData = new SideBarViewModel();
+            signUpViewModel.SideBarData.CurrentIndex = 0;
 
             return View("SignUp", signUpViewModel);
         }
