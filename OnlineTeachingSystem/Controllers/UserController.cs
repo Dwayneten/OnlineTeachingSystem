@@ -79,5 +79,49 @@ namespace OnlineTeachingSystem.Controllers
             HttpContext.Session["User"] = "";
             return View("");
         }
+
+        public ActionResult TryLogin()
+        {
+            SignUpViewModel signUpViewModel = new SignUpViewModel();
+            signUpViewModel.SideBarData = new SideBarViewModel();
+            signUpViewModel.SideBarData.CurrentIndex = 0;
+            signUpViewModel.NavStatusData = new NavStatusViewModel();
+            signUpViewModel.NavStatusData.LeftText = "Log in";
+            signUpViewModel.NavStatusData.LeftLink = "/User/LogIn";
+            signUpViewModel.NavStatusData.RightText = "Sign up";
+            signUpViewModel.NavStatusData.RightLink = "/User/SignUp";
+
+            UserInfoBusinessLayer userInfoBusinessLayer = new UserInfoBusinessLayer();
+            List<UserInfo> userInfoList = userInfoBusinessLayer.GetUserInfoList();
+            UserInfo userInfo = new UserInfo();
+            userInfo.Mail = Request.Form["Mail"];
+            userInfo.Password = Request.Form["Password"];
+
+            bool LoginFlag = false;
+
+            foreach (UserInfo ui in userInfoList)
+            {
+                if (ui.Mail == userInfo.Mail && ui.Password == userInfo.Password)
+                {
+                    LoginFlag = true;
+                    break;
+                }
+            }
+
+
+            if (LoginFlag == true)
+            {
+                signUpViewModel.NavStatusData.AlertType = "success";
+                signUpViewModel.NavStatusData.Message = "Login successfully!";
+                HttpContext.Session["User"] = userInfo.Mail;
+            }
+            else
+            {
+                signUpViewModel.NavStatusData.Message = "Wrong Email or password";
+                signUpViewModel.NavStatusData.AlertType = "danger";
+            }
+
+            return View("Signup", signUpViewModel);
+        }
     }
 }

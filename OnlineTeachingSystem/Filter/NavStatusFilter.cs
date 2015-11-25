@@ -15,13 +15,16 @@ namespace OnlineTeachingSystem.Filter
             if (v != null) // v will null when v is not a ViewResult
             {
                 BaseViewModel bvm = v.Model as BaseViewModel;
-                if (bvm != null)//bvm will be null when we want a view without Header and footer
+                if (bvm != null) // bvm will be null when we want a view without _OTSlayout
                 {
                     bvm.NavStatusData = new NavStatusViewModel();
                     bvm.NavStatusData.LeftText = "Log in";
                     bvm.NavStatusData.LeftLink =  "/User/LogIn";
                     bvm.NavStatusData.RightText = "Sign up";
                     bvm.NavStatusData.RightLink = "/User/SignUp";
+
+                    bvm.NavStatusData.Message = "";
+                    bvm.NavStatusData.AlertType = "success";
                 }
             }
         }

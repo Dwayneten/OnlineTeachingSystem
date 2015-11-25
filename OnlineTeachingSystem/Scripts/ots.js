@@ -28,7 +28,6 @@ function showSideBarActive() {
     var currentIndex = a.lastElementChild.innerText[0] - '0';
     a.children[currentIndex].className += ' active';
 };
-showSideBarActive();
 function checkSignUp() {
     var form = $('#signupForm')[0];
     var mail = $('#inputEmail')[0].value;
@@ -65,4 +64,34 @@ function checkSignUp() {
     }
 
     return ok == 1 ? true : false;
+}
+function addLoginAttr() {
+    if ($('#nav-left')[0].innerText == "Log in") {
+        $('#nav-left').attr("data-toggle", "modal");
+        $('#nav-left').attr("data-target", "#loginModal");
+    }
+}
+function checkLogin() {
+    var form = $('#loginForm')[0];
+    var mail = $('#loginEmail')[0].value;
+    var re = /^[\w+\.]+@[\w+\.]+\.\w+$/;
+    var ok = 1;
+
+    if (!re.test(mail)) {
+        $('#loginEmailLabel')[0].className += " has-error";
+        $('#loginEmailLabel')[0].firstElementChild.innerText = "Invalid mail address";
+        ok = 0;
+    } else {
+        $('#loginEmailLabel')[0].className = "form-group";
+        $('#loginEmailLabel')[0].firstElementChild.innerText = "Email Address";
+    }
+
+    return ok == 1 ? true : false;
+}
+function showLogin() {
+    if ($('#login-alert').hasClass('alert-danger')) {
+        $('#nav-left')[0].click();
+        $('#login-alert')[0].style.display = "block";
+        $('#login-alert')[0].style.padding = "5px 15px 5px 15px";
+    }
 }

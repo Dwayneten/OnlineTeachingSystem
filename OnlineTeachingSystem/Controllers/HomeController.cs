@@ -16,6 +16,22 @@ namespace OnlineTeachingSystem.Controllers
             BaseViewModel bvm = new BaseViewModel();
             bvm.SideBarData = new SideBarViewModel();
             bvm.SideBarData.CurrentIndex = 0;
+
+            /* prepare for loged user 
+            if (Session["User"] != null && Session["User"] != "")
+            {
+                bvm.NavStatusData = new NavStatusViewModel();
+
+                // TODO:
+                // User profile
+                // Get user session
+                bvm.NavStatusData.LeftLink = "#";
+
+                bvm.NavStatusData.RightLink = "#";
+                bvm.NavStatusData.RightText = "Log out";
+            }
+            */
+
             return View(bvm);
         }
 

@@ -11,5 +11,7 @@ namespace OnlineTeachingSystem.ViewModels
         public string LeftLink { get; set; }
         public string RightText { get; set; }
         public string RightLink { get; set; }
+        public string Message { get; set; }
+        public string AlertType { get; set; }
     }
 }
