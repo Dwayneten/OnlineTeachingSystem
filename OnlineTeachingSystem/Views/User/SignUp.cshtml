@@ -24,10 +24,11 @@
                         <input type="password" class="form-control" id="inputPassword" placeholder="Password" required="" name="Password">
                         <p>Lorem ipsum dolor sit amet,  cras amet.</p>
                     </div>
-                    <div class="alert alert-@Model.AlertType" style="display:none">@Model.Message</div>
+                    <div id="signup-alert" class="alert alert-@Model.AlertType" style="display:none">@Model.Message</div>
                     <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return checkSignUp();">Sign up</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<script>showAlert();</script>

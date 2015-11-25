@@ -14,7 +14,7 @@ function addLoadEvent(func) {
     }
 };
 function showAlert() {
-    var a = document.getElementsByClassName('alert')[0];
+    var a = $('#signup-alert')[0];
     if (a.innerText != "") {
         a.style.display = "block";
         a.style.padding = "5px 15px 5px 15px";

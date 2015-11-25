@@ -12,6 +12,7 @@
     <link type="text/css" rel="stylesheet" href="~/Content/ots.css" />
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("/Scripts/ots.js")
+    @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
     @{
@@ -29,12 +30,12 @@
             </div>
         </div>
     </div>
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <script>
         addLoadEvent(showSideBarActive());
         addLoadEvent(addLoginAttr());
-        addLoadEvent(showLogin());</script>
+        addLoadEvent(showLogin());
+    </script>
 </body>
 </html>
