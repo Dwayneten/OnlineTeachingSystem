@@ -11,7 +11,6 @@ namespace OnlineTeachingSystem.Controllers
 
     public class ArticleController : Controller
     {
-        [HttpPost]
         [NavStatusFilter]
         public ActionResult Test()
         {
