@@ -60,8 +60,9 @@ namespace OnlineTeachingSystem.Controllers
                 userInfoBusinessLayer.SignUp(userInfo);
                 signUpViewModel.Message = "Signup successfully!";
                 signUpViewModel.AlertType = "success";
-                HttpContext.Session["User"]= userInfo.Mail;
-                 
+                HttpContext.Session["User"]= userInfo.UserInfoID;
+                HttpContext.Session["Mail"] = userInfo.Mail;
+                
                 return View("SignUp", signUpViewModel);
             }
             else
@@ -77,6 +78,8 @@ namespace OnlineTeachingSystem.Controllers
         public ActionResult Logout()
         {
             HttpContext.Session["User"] = "";
+            HttpContext.Session["Mail"] ="";
+
             return View("");
         }
 
