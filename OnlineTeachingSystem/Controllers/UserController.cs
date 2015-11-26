@@ -117,14 +117,17 @@ namespace OnlineTeachingSystem.Controllers
                 signUpViewModel.NavStatusData.AlertType = "success";
                 signUpViewModel.NavStatusData.Message = "Login successfully!";
                 HttpContext.Session["User"] = userInfo.Mail;
+
+                Response.Redirect("/");
+                return View("Index", signUpViewModel);
             }
             else
             {
                 signUpViewModel.NavStatusData.Message = "Wrong Email or password";
                 signUpViewModel.NavStatusData.AlertType = "danger";
-            }
 
-            return View("Signup", signUpViewModel);
+                return View("Signup", signUpViewModel);
+            } 
         }
     }
 }

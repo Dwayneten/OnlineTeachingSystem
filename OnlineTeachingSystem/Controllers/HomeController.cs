@@ -17,8 +17,8 @@ namespace OnlineTeachingSystem.Controllers
             bvm.SideBarData = new SideBarViewModel();
             bvm.SideBarData.CurrentIndex = 0;
 
-            /* prepare for loged user 
-            if (Session["User"] != null && Session["User"] != "")
+            /* prepare for loged user */
+            if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
                 bvm.NavStatusData = new NavStatusViewModel();
 
@@ -26,11 +26,11 @@ namespace OnlineTeachingSystem.Controllers
                 // User profile
                 // Get user session
                 bvm.NavStatusData.LeftLink = "#";
-
+                bvm.NavStatusData.RightLink = Session["User"].ToString();
                 bvm.NavStatusData.RightLink = "#";
                 bvm.NavStatusData.RightText = "Log out";
             }
-            */
+            /**/
 
             return View(bvm);
         }
