@@ -26,13 +26,20 @@ namespace OnlineTeachingSystem.Controllers
                 // User profile
                 // Get user session
                 bvm.NavStatusData.LeftLink = "#";
-                bvm.NavStatusData.RightLink = Session["User"].ToString();
+                bvm.NavStatusData.LeftText = Session["User"].ToString();
                 bvm.NavStatusData.RightLink = "#";
                 bvm.NavStatusData.RightText = "Log out";
             }
             /**/
 
             return View(bvm);
+        }
+
+        protected override void OnActionExecuting(ActionExecutingContext aec)
+        {
+            base.OnActionExecuting(aec);
+            Session["User"] = aec.HttpContext.Session["User"];
+            Session["Mail"] = aec.HttpContext.Session["Mail"];
         }
 
         [NavStatusFilter]

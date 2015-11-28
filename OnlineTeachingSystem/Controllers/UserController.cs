@@ -25,6 +25,12 @@ namespace OnlineTeachingSystem.Controllers
 
             return View("SignUp", signUpViewModel);
         }
+        protected override void OnActionExecuting(ActionExecutingContext aec)
+        {
+            base.OnActionExecuting(aec);
+            Session["User"] = aec.HttpContext.Session["User"];
+            Session["Mail"] = aec.HttpContext.Session["Mail"];
+        }
 
         [NavStatusFilter]
         public ActionResult TrySignUp()
