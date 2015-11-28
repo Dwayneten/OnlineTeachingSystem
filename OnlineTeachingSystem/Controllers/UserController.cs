@@ -29,7 +29,7 @@ namespace OnlineTeachingSystem.Controllers
                 signUpViewModel.NavStatusData = new NavStatusViewModel();
                 signUpViewModel.NavStatusData.LeftLink = "#";
                 signUpViewModel.NavStatusData.LeftText = Session["User"].ToString();
-                signUpViewModel.NavStatusData.RightLink = "#";
+                signUpViewModel.NavStatusData.RightLink = "/User/Logout";
                 signUpViewModel.NavStatusData.RightText = "Log out";
             }
 
@@ -94,8 +94,9 @@ namespace OnlineTeachingSystem.Controllers
         public ActionResult Logout()
         {
             HttpContext.Session["User"] = "";
-            HttpContext.Session["Mail"] ="";
+            HttpContext.Session["Mail"] = "";
 
+            Response.Redirect("/");
             return View("");
         }
 

@@ -22,7 +22,7 @@ namespace OnlineTeachingSystem.Controllers
                 bvm.NavStatusData = new NavStatusViewModel();
                 bvm.NavStatusData.LeftLink = "#";
                 bvm.NavStatusData.LeftText = Session["User"].ToString();
-                bvm.NavStatusData.RightLink = "#";
+                bvm.NavStatusData.RightLink = "/User/Logout";
                 bvm.NavStatusData.RightText = "Log out";
             }
 
