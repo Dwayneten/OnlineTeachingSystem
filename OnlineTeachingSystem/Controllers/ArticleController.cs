@@ -13,6 +13,24 @@ namespace OnlineTeachingSystem.Controllers
     public class ArticleController : Controller
     {
         [NavStatusFilter]
+        public ActionResult Index()
+        {
+            ArticleListViewModel alvm = new ArticleListViewModel();
+            alvm.SideBarData = new SideBarViewModel();
+            alvm.SideBarData.CurrentIndex = 1;
+
+            if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
+            {
+                alvm.NavStatusData = new NavStatusViewModel();
+                alvm.NavStatusData.LeftLink = "#";
+                alvm.NavStatusData.LeftText = Session["User"].ToString();
+                alvm.NavStatusData.RightLink = "/User/Logout";
+                alvm.NavStatusData.RightText = "Log out";
+            }
+            return View("", alvm);
+        }
+
+        [NavStatusFilter]
         public ActionResult Test()
         {
             BaseViewModel bvm = new BaseViewModel();
@@ -35,7 +53,8 @@ namespace OnlineTeachingSystem.Controllers
             ArticleViewModel articleViewModel = new ArticleViewModel();
             ArticleBusinessLayer articleBusinessLayer = new ArticleBusinessLayer();
             List<Article> articleList = articleBusinessLayer.GetArticleList();
-            articleViewModel.ArticleList = articleList;
+            
+            // articleViewModel.ArticleList = articleList;
 
             int articleID = Convert.ToInt32(Request.QueryString["ArticleID"]);
             if(articleID != 0)

@@ -203,3 +203,42 @@ body {
   margin-bottom: 5px;
   font-size: 40px;
 }
+
+
+/*
+* Article List Page
+*/
+
+.article-list hr {
+    margin: 15px 0;
+}
+
+/*
+ * Article list group
+ */
+.article-list-group {
+
+}
+.article-list-title {
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+.article-list-description {
+    color: #999;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.article-list-btn {
+    line-height: 1;
+    padding: 5px 10px;
+    /*
+    margin-left: 5px;
+    margin-bottom: 5px;
+    */
+    border-radius: 10px;
+}
+.article-list-btn:hover {
+    background-color: #428bda;  
+    color: #fff;
+    border-color: #fff;
+}

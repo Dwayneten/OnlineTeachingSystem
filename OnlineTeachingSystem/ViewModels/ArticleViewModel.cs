@@ -6,9 +6,8 @@ using OnlineTeachingSystem.Models;
 
 namespace OnlineTeachingSystem.ViewModels
 {
-    public class ArticleViewModel:BaseViewModel
+    public class ArticleViewModel : BaseViewModel
     {
-        public List<Article> ArticleList { get; set; }
         public int ArticleID { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
