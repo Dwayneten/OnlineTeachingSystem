@@ -76,7 +76,7 @@ namespace OnlineTeachingSystem.Controllers
                 userInfoBusinessLayer.SignUp(userInfo);
                 signUpViewModel.Message = "Signup successfully!";
                 signUpViewModel.AlertType = "success";
-                HttpContext.Session["User"]= userInfo.UserInfoID;
+                HttpContext.Session["User"]= userInfo.NickName;
                 HttpContext.Session["Mail"] = userInfo.Mail;
                 
                 return View("SignUp", signUpViewModel);

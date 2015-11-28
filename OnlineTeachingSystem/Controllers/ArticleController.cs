@@ -100,6 +100,28 @@ namespace OnlineTeachingSystem.Controllers
             return View("Test");
         }
 
+        [NavStatusFilter]
+        public ActionResult Add()
+        {
+            AddArticleViewModel aavm = new AddArticleViewModel();
+            aavm.SideBarData = new SideBarViewModel();
+            aavm.SideBarData.CurrentIndex = 1;
+
+            if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
+            {
+                aavm.NavStatusData = new NavStatusViewModel();
+                aavm.NavStatusData.LeftLink = "#";
+                aavm.NavStatusData.LeftText = Session["User"].ToString();
+                aavm.NavStatusData.RightLink = "/User/Logout";
+                aavm.NavStatusData.RightText = "Log out";
+            }
+
+
+            aavm.CreateDate = DateTime.Now;
+
+            return View("Add", aavm);
+        }
+
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
