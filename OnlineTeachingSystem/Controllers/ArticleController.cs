@@ -19,6 +19,15 @@ namespace OnlineTeachingSystem.Controllers
             bvm.SideBarData = new SideBarViewModel();
             bvm.SideBarData.CurrentIndex = 1;
 
+            if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
+            {
+                bvm.NavStatusData = new NavStatusViewModel();
+                bvm.NavStatusData.LeftLink = "#";
+                bvm.NavStatusData.LeftText = Session["User"].ToString();
+                bvm.NavStatusData.RightLink = "#";
+                bvm.NavStatusData.RightText = "Log out";
+            }
+
             return View("Test", bvm);
         }
         public ActionResult GetArticle()
@@ -70,6 +79,13 @@ namespace OnlineTeachingSystem.Controllers
             articleBusinessLayer.UploadArticle(readyArticle);
 
             return View("Test");
+        }
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            base.OnActionExecuting(filterContext);
+            Session["User"] = filterContext.HttpContext.Session["User"];
+            Session["Mail"] = filterContext.HttpContext.Session["Mail"];
         }
     }
 }

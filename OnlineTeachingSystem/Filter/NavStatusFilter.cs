@@ -17,14 +17,17 @@ namespace OnlineTeachingSystem.Filter
                 BaseViewModel bvm = v.Model as BaseViewModel;
                 if (bvm != null) // bvm will be null when we want a view without _OTSlayout
                 {
-                    bvm.NavStatusData = new NavStatusViewModel();
-                    bvm.NavStatusData.LeftText = "Log in";
-                    bvm.NavStatusData.LeftLink =  "/User/LogIn";
-                    bvm.NavStatusData.RightText = "Sign up";
-                    bvm.NavStatusData.RightLink = "/User/SignUp";
+                    if (bvm.NavStatusData == null)
+                    {
+                        bvm.NavStatusData = new NavStatusViewModel();
+                        bvm.NavStatusData.LeftText = "Log in";
+                        bvm.NavStatusData.LeftLink = "/User/LogIn";
+                        bvm.NavStatusData.RightText = "Sign up";
+                        bvm.NavStatusData.RightLink = "/User/SignUp";
 
-                    bvm.NavStatusData.Message = "";
-                    bvm.NavStatusData.AlertType = "success";
+                        bvm.NavStatusData.Message = "";
+                        bvm.NavStatusData.AlertType = "success";
+                    }
                 }
             }
         }

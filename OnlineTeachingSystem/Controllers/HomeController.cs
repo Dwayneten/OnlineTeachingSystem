@@ -17,29 +17,23 @@ namespace OnlineTeachingSystem.Controllers
             bvm.SideBarData = new SideBarViewModel();
             bvm.SideBarData.CurrentIndex = 0;
 
-            /* prepare for loged user */
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
                 bvm.NavStatusData = new NavStatusViewModel();
-
-                // TODO:
-                // User profile
-                // Get user session
                 bvm.NavStatusData.LeftLink = "#";
                 bvm.NavStatusData.LeftText = Session["User"].ToString();
                 bvm.NavStatusData.RightLink = "#";
                 bvm.NavStatusData.RightText = "Log out";
             }
-            /**/
 
             return View(bvm);
         }
 
-        protected override void OnActionExecuting(ActionExecutingContext aec)
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            base.OnActionExecuting(aec);
-            Session["User"] = aec.HttpContext.Session["User"];
-            Session["Mail"] = aec.HttpContext.Session["Mail"];
+            base.OnActionExecuting(filterContext);
+            Session["User"] = filterContext.HttpContext.Session["User"];
+            Session["Mail"] = filterContext.HttpContext.Session["Mail"];
         }
 
         [NavStatusFilter]

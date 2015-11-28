@@ -23,6 +23,16 @@ namespace OnlineTeachingSystem.Controllers
             signUpViewModel.SideBarData = new SideBarViewModel();
             signUpViewModel.SideBarData.CurrentIndex = 0;
 
+
+            if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
+            {
+                signUpViewModel.NavStatusData = new NavStatusViewModel();
+                signUpViewModel.NavStatusData.LeftLink = "#";
+                signUpViewModel.NavStatusData.LeftText = Session["User"].ToString();
+                signUpViewModel.NavStatusData.RightLink = "#";
+                signUpViewModel.NavStatusData.RightText = "Log out";
+            }
+
             return View("SignUp", signUpViewModel);
         }
         protected override void OnActionExecuting(ActionExecutingContext aec)
