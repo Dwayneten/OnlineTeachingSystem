@@ -14,12 +14,13 @@ function addLoadEvent(func) {
     }
 };
 function showAlert() {
-    var a = $('#signup-alert')[0];
+    var a = $('#ots-alert')[0];
     if (a.innerText != "") {
         a.style.display = "block";
         a.style.padding = "5px 15px 5px 15px";
         if (a.classList.contains('alert-success')) {
-            setTimeout("javascript:location.href='/'", 2000);
+            if (a.classList.contains('signup-alert'))
+                setTimeout("javascript:location.href='/'", 2000);
         }
     }
 }
@@ -84,6 +85,42 @@ function checkLogin() {
     } else {
         $('#loginEmailLabel')[0].className = "form-group";
         $('#loginEmailLabel')[0].firstElementChild.innerText = "Email Address";
+    }
+
+    return ok == 1 ? true : false;
+}
+function checkAddArticle() {
+    var form = $('#addArticleForm')[0];
+    var title = $('#inputTitle')[0].value;
+    var name = $('#inputName')[0].value;
+    var content = $('#inputContent')[0].value;
+    var ok = 1;
+
+    if (title.length < 1) {
+        form.children[0].className += " has-error";
+        form.children[0].firstElementChild.innerText = "Title doesn't contain any character";
+        ok = 0;
+    } else {
+        form.children[0].className = "form-group";
+        form.children[0].firstElementChild.innerText = "Title";
+    }
+
+    if (name.length < 6 || name.length > 16) {
+        form.children[1].className += " has-error";
+        form.children[1].firstElementChild.innerText = "Length of Author Name should between 6 and 16";
+        ok = 0;
+    } else {
+        form.children[1].className = "form-group";
+        form.children[1].firstElementChild.innerText = "Author Name";
+    }
+
+    if (content.length < 100) {
+        form.children[3].className += " has-error";
+        form.children[3].firstElementChild.innerText = "Article content should at least contain 100 characters";
+        ok = 0;
+    } else {
+        form.children[3].className = "form-group";
+        form.children[3].firstElementChild.innerText = "Article Content";
     }
 
     return ok == 1 ? true : false;

@@ -86,8 +86,15 @@ namespace OnlineTeachingSystem.Controllers
 
             return View("Test");
         }
+
+        [NavStatusFilter]
         public ActionResult UploadArticle()
         {
+            AddArticleViewModel aavm = new AddArticleViewModel();
+            aavm.SideBarData = new SideBarViewModel();
+            aavm.SideBarData.CurrentIndex = 1;
+            aavm.CreateDate = DateTime.Now;
+
             Article readyArticle = new Article();
             ArticleBusinessLayer articleBusinessLayer = new ArticleBusinessLayer();
             readyArticle.Author = Request.Form["Author"];
@@ -97,15 +104,20 @@ namespace OnlineTeachingSystem.Controllers
 
             articleBusinessLayer.UploadArticle(readyArticle);
 
-            return View("Test");
+            aavm.Message = "Add article successfully!";
+            aavm.AlertType = "success";
+
+            return View("Add", aavm);
         }
 
+        /* Add artcle page message and logic. Code by Dwayne*/
         [NavStatusFilter]
         public ActionResult Add()
         {
             AddArticleViewModel aavm = new AddArticleViewModel();
             aavm.SideBarData = new SideBarViewModel();
             aavm.SideBarData.CurrentIndex = 1;
+            aavm.CreateDate = DateTime.Now;
 
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
@@ -115,9 +127,6 @@ namespace OnlineTeachingSystem.Controllers
                 aavm.NavStatusData.RightLink = "/User/Logout";
                 aavm.NavStatusData.RightText = "Log out";
             }
-
-
-            aavm.CreateDate = DateTime.Now;
 
             return View("Add", aavm);
         }
