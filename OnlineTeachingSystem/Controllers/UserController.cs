@@ -42,6 +42,19 @@ namespace OnlineTeachingSystem.Controllers
             Session["Mail"] = aec.HttpContext.Session["Mail"];
         }
 
+        /* Convert email address to lower case. Code by Dwayne */
+        public string UniqueEmail(string x)
+        {
+            int len = x.Length;
+            string unqname = "";
+            for (int i = 0; i < len; ++i)
+                if (Char.IsUpper(x[i]))
+                    unqname += char.ToLower(x[i]);
+                else
+                    unqname += x[i];
+            return unqname;
+        }
+
         [NavStatusFilter]
         public ActionResult TrySignUp()
         {
@@ -50,7 +63,7 @@ namespace OnlineTeachingSystem.Controllers
             List<UserInfo> userInfoList = userInfoBusinessLayer.GetUserInfoList();
             UserInfo userInfo = new UserInfo();
             userInfo.NickName = Request.Form["NickName"];
-            userInfo.Mail = Request.Form["Mail"];
+            userInfo.Mail = UniqueEmail(Request.Form["Mail"]);
             userInfo.Password = Request.Form["Password"];
 
             bool SignUpFlag = true;
@@ -96,7 +109,7 @@ namespace OnlineTeachingSystem.Controllers
             HttpContext.Session["User"] = "";
             HttpContext.Session["Mail"] = "";
 
-            Response.Redirect("/");
+            Response.Redirect("~");
             return View("");
         }
 
@@ -114,7 +127,7 @@ namespace OnlineTeachingSystem.Controllers
             UserInfoBusinessLayer userInfoBusinessLayer = new UserInfoBusinessLayer();
             List<UserInfo> userInfoList = userInfoBusinessLayer.GetUserInfoList();
             UserInfo userInfo = new UserInfo();
-            userInfo.Mail = Request.Form["Mail"];
+            userInfo.Mail = UniqueEmail(Request.Form["Mail"]);
             userInfo.Password = Request.Form["Password"];
 
             bool LoginFlag = false;
@@ -135,7 +148,7 @@ namespace OnlineTeachingSystem.Controllers
                 signUpViewModel.NavStatusData.Message = "Login successfully!";
                 HttpContext.Session["User"] = userInfo.Mail;
 
-                Response.Redirect("/");
+                Response.Redirect("~");
                 return View("Index", signUpViewModel);
             }
             else
