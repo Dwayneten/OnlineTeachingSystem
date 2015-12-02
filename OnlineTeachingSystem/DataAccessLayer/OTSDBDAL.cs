@@ -12,10 +12,14 @@ namespace OnlineTeachingSystem.DataAccessLayer
     {
         public DbSet<UserInfo> UserInfoList { get; set; }
         public DbSet<Article> ArticleList { get; set; }
+        public DbSet<Exam> Exam { get; set; }
+        public DbSet<ExamList> ExamList { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserInfo>().ToTable("UserInfo");
             modelBuilder.Entity<Article>().ToTable("Article");
+            modelBuilder.Entity<Exam>().ToTable("Exam");
+            modelBuilder.Entity<ExamList>().ToTable("ExamList");
             base.OnModelCreating(modelBuilder);
         }
     }

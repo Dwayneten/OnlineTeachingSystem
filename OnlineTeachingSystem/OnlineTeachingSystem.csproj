@@ -121,6 +121,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\ExamController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DataAccessLayer\OTSDBDAL.cs" />
@@ -130,6 +131,10 @@
     </Compile>
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\ArticleBusinessLayer.cs" />
+    <Compile Include="Models\Exam.cs" />
+    <Compile Include="Models\ExamBusinessLayer.cs" />
+    <Compile Include="Models\ExamList.cs" />
+    <Compile Include="Models\ExamListBusinessLayer.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Models\UserInfoBusinessLayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -137,9 +142,11 @@
     <Compile Include="ViewModels\ArticleViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\AddArticleViewModel.cs" />
+    <Compile Include="ViewModels\ExamListViewModel.cs" />
     <Compile Include="ViewModels\SideBarViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="ViewModels\NavStatusViewModel.cs" />
+    <Compile Include="ViewModels\ExamViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -197,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Exam\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
