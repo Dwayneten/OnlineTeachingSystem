@@ -73,6 +73,7 @@ namespace OnlineTeachingSystem.Controllers
         }
 
         /* Create by Dwayne */
+        [NavStatusFilter]
         public ActionResult UploadExam()
         {
             AddExamViewModel aevm = new AddExamViewModel();
