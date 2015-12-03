@@ -83,15 +83,22 @@ namespace OnlineTeachingSystem.Controllers
             aevm.SideBarData.CurrentIndex = 2;
 
             /* Business code here. */
+            bool IsSuccessUpload = false;
+            if (HttpContext.Session["User"].ToString()=="Admin")
+            {
 
+            }
 
-            /* if success then */
-            aevm.Message = "Add Exam successfully!";
-            aevm.AlertType = "success";
-            /* if not success then */
-            aevm.Message = "Warning infomation here.";
-            aevm.AlertType = "danger";
-
+            if (IsSuccessUpload == true) /* if success then */
+            {
+                aevm.Message = "Add Exam successfully!";
+                aevm.AlertType = "success";
+            }
+            else /* if not success then */
+            {
+                aevm.Message = "Warning infomation here.";
+                aevm.AlertType = "danger";
+            }
             return View("Add", aevm);
         }
 
