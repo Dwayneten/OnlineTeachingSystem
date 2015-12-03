@@ -1,0 +1,25 @@
+﻿@using OnlineTeachingSystem.ViewModels
+@model AddExamViewModel
+@{ViewBag.Title = "Add Exam";}
+<div class="row">
+    <div class="col-sm-9">
+        <h1 class="">Add new exam</h1>
+        <hr />
+        <br />
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mi justo, vehicula eget pellentesque sed, accumsan ut neque. Duis quis pellentesque lorem, sed egestas nulla. Quisque tincidunt volutpat.
+        <div class="container-fluid">
+            <div class="add-exam-container center-block">
+                <form class="" action="/Exam/UploadExam" method="post" enctype="multipart/form-data" id="addExamForm">
+                    <div class="form-group">
+                        <label class="control-label" for="inputPath">Select Excel File</label>
+                        <input type="file" class="" id="inputPath">
+                        <p>Note that we support Microsoft Office Excel files only(.xls/.xlsx).</p>
+                    </div>
+                    <div id="ots-alert" class="alert add-exam-alert alert-@Model.AlertType" style="display:none">@Model.Message</div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return checkAddExam();">Add exam</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>showAlert();</script>
