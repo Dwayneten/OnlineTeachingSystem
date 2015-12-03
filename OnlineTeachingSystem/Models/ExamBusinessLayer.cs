@@ -14,12 +14,15 @@ namespace OnlineTeachingSystem.Models
             OTSDBDAL otsdbDAL = new OTSDBDAL();
             return otsdbDAL.Exam.ToList();
         }
-        public Exam AddExam(Exam exam)
+        public List<Exam> AddExam(List<Exam> examList)
         {
             OTSDBDAL otsdbDAL = new OTSDBDAL();
-            otsdbDAL.Exam.Add(exam);
-            otsdbDAL.SaveChanges();
-            return exam;
+            foreach(Exam exam in examList)
+            {
+                otsdbDAL.Exam.Add(exam);
+                otsdbDAL.SaveChanges();
+            }
+            return examList;
         }
     }
 }

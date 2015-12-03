@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using OnlineTeachingSystem.Models;
 using OnlineTeachingSystem.ViewModels;
 using OnlineTeachingSystem.Filter;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace OnlineTeachingSystem.Controllers
 {
@@ -81,12 +82,33 @@ namespace OnlineTeachingSystem.Controllers
             AddExamViewModel aevm = new AddExamViewModel();
             aevm.SideBarData = new SideBarViewModel();
             aevm.SideBarData.CurrentIndex = 2;
+            ExamBusinessLayer EBL = new ExamBusinessLayer();
 
             /* Business code here. */
             bool IsSuccessUpload = false;
             if (HttpContext.Session["User"].ToString()=="Admin")
             {
+                HttpPostedFileBase examFile = Request.Files["examFile"];
+                List<Exam> examList = new List<Exam>();
 
+                if (examFile != null)
+                {
+                    examList = FileTrans(examFile);
+                    if (examList != null)
+                    {
+                        EBL.AddExam(examList);
+
+                        /* if success then */
+                        aevm.Message = "Add Exam successfully!";
+                        aevm.AlertType = "success";
+                    }
+                    else
+                    {
+                        /* if not success then */
+                        aevm.Message = "Fail to add Exam.";
+                        aevm.AlertType = "danger";
+                    }
+                }
             }
 
             if (IsSuccessUpload == true) /* if success then */
@@ -100,6 +122,96 @@ namespace OnlineTeachingSystem.Controllers
                 aevm.AlertType = "danger";
             }
             return View("Add", aevm);
+        }
+
+        /* Create by Mimikami 2015-13-3 14:50 */
+        private List<Exam> FileTrans(HttpPostedFileBase examFile)
+        {
+            if(!System.IO.Directory.Exists(Server.MapPath("../Upload/"))) {
+                System.IO.Directory.CreateDirectory(Server.MapPath("../Upload/"));
+            }
+            string filePath = Server.MapPath("../Upload/") + System.IO.Path.GetFileName(examFile.FileName);
+
+            /* Delete the suffix */
+            char[] temp = examFile.FileName.ToCharArray(0, examFile.FileName.Length);
+            int i = 0;
+            for(i=temp.Length-1;i>=0;i--) {
+                if(temp[i]=='.') {
+                    temp[i] = '\0';
+                    break;
+                }
+            }
+
+            string filename = new string(temp);
+            examFile.SaveAs(filePath);
+            List<Exam> questionList = new List<Exam>();
+
+            Excel.Application xlApp;
+            Excel.Workbook xlWorkBook;
+            Excel.Worksheet xlWorkSheet;
+            Excel.Range range;
+            
+            int rCnt;
+
+            xlApp = new Excel.Application();
+            xlWorkBook = xlApp.Workbooks.Open(filePath, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+
+            range = xlWorkSheet.UsedRange;
+
+            for (rCnt = 1; rCnt <= range.Rows.Count; rCnt++) {
+                Exam question = new Exam();
+                question.ExamName = filename;
+                question.Problem = (range.Cells[rCnt, 2] as Excel.Range).Value2.ToString();
+                switch ((int)(range.Cells[rCnt, 1] as Excel.Range).Value2) {
+                    case 0:
+                        question.First = (range.Cells[rCnt,3] as Excel.Range).Value2.ToString();
+                        question.Second = (range.Cells[rCnt, 4] as Excel.Range).Value2.ToString();
+                        question.answer = (int)(range.Cells[rCnt, 7] as Excel.Range).Value2;
+                        break;
+                    case 1:
+                        question.First = (range.Cells[rCnt, 3] as Excel.Range).Value2.ToString();
+                        question.Second = (range.Cells[rCnt, 4] as Excel.Range).Value2.ToString();
+                        question.Third = (range.Cells[rCnt, 5] as Excel.Range).Value2.ToString();
+                        question.Fourth = (range.Cells[rCnt, 6] as Excel.Range).Value2.ToString();
+                        question.answer = (int)(range.Cells[rCnt, 7] as Excel.Range).Value2;
+                        break;
+                }
+                question.ProblemProperty = (int)(range.Cells[rCnt, 1] as Excel.Range).Value2;
+
+                questionList.Add(question);
+            }
+
+            xlWorkBook.Close(true, null, null);
+            xlApp.Quit();
+
+            releaseObject(xlWorkSheet);
+            releaseObject(xlWorkBook);
+            releaseObject(xlApp);
+
+            if(System.IO.File.Exists(filePath)) {
+                System.IO.File.Delete(filePath);
+            }
+
+            return questionList;
+        }
+
+        /* Create by Mimikami 2015-13-3 14:50 */
+        private void releaseObject(object obj)
+        {
+            try
+            {
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+                obj = null;
+            }
+            catch (Exception ex)
+            {
+                obj = null;
+            }
+            finally
+            {
+                GC.Collect();
+            }
         }
 
         /* Create by Dwayne  2015-12-3 12:28:49 */
