@@ -54,9 +54,11 @@ namespace OnlineTeachingSystem.Controllers
                 {
                     if (t.ExamName == examName)
                     {
+                        userexam.ExamID = t.ExamID;
                         userexam.ExamName = t.ExamName;
                         userexam.Problem = t.Problem;
                         userexam.ProblemProperty = t.ProblemProperty;
+                        userexam.Answer = t.Answer;
                         // single-choice question
                         if (userexam.ProblemProperty == 1)
                         {
