@@ -9,6 +9,7 @@ namespace OnlineTeachingSystem.Models
     public class Exam
     {
         [Key]
+        public int ExamID { get; set; }
         public string ExamName{ get; set; }
         public string Problem { get; set; }
         public int ProblemProperty { get;set; }
@@ -16,5 +17,6 @@ namespace OnlineTeachingSystem.Models
         public string Second{ get;set; }
         public string Third{ get;set; }
         public string Fourth{ get;set; }
+        public int Answer { get; set; }
     }
 }
