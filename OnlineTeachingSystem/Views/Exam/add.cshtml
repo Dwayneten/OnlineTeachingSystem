@@ -12,7 +12,7 @@
                 <form class="" action="/Exam/UploadExam" method="post" enctype="multipart/form-data" id="addExamForm">
                     <div class="form-group">
                         <label class="control-label" for="inputPath">Select Excel File</label>
-                        <input type="file" class="" id="inputPath">
+                        <input type="file" class="" id="inputPath" name="examFile">
                         <p>Note that we support Microsoft Office Excel files only(.xls/.xlsx).</p>
                     </div>
                     <div id="ots-alert" class="alert add-exam-alert alert-@Model.AlertType" style="display:none">@Model.Message</div>
