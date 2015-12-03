@@ -9,5 +9,6 @@ namespace OnlineTeachingSystem.ViewModels
     public class ArticleListViewModel : BaseViewModel
     {
         public List<Article> ArticleList { get; set; }
+        public int PageNum { get; set; }
     }
 }

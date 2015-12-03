@@ -5,41 +5,42 @@
     <div class=" col-sm-12 col-md-8 article-list">
         <hr>
         <div class="article-list-group">
-            <p class="article-list-title">An Article For Testing</p>
-            <p class="article-list-description"> November 22, 2015 by <a href="#">DwayneTen</a></p>
+            <p class="article-list-title">@Model.ArticleList[0].Title</p>
+            <p class="article-list-description">@Model.ArticleList[0].CreateDate by <a href="#">@Model.ArticleList[0].Author</a></p>
             <p class="article-list-description">This article is use for testing the article features and preview the layout.</p>
             <a class="btn btn-default article-list-btn" href="/Article/Test">Read more »</a>
             <hr>
         </div>
         <div class="article-list-group">
-            <p class="article-list-title">An Article For Testing</p>
-            <p class="article-list-description"> November 22, 2015 by <a href="#">DwayneTen</a></p>
+            <p class="article-list-title">@Model.ArticleList[1].Title</p>
+            <p class="article-list-description">@Model.ArticleList[1].CreateDate by <a href="#">@Model.ArticleList[1].Author</a></p>
             <p class="article-list-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id eleifend nibh. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
             <a class="btn btn-default article-list-btn" href="/Article/Test">Read more »</a>
             <hr>
         </div>
         <div class="article-list-group">
-            <p class="article-list-title">An Article For Testing</p>
-            <p class="article-list-description"> November 22, 2015 by <a href="#">DwayneTen</a></p>
+            <p class="article-list-title">@Model.ArticleList[2].Title</p>
+            <p class="article-list-description">@Model.ArticleList[2].CreateDate by <a href="#">@Model.ArticleList[2].Author</a></p>
             <p class="article-list-description"></p>
             <a class="btn btn-default article-list-btn" href="/Article/Test">Read more »</a>
             <hr>
         </div>
         <div class="article-list-group">
-            <p class="article-list-title">An Article For Testing</p>
-            <p class="article-list-description"> November 22, 2015 by <a href="#">DwayneTen</a></p>
+            <p class="article-list-title">@Model.ArticleList[3].Title</p>
+            <p class="article-list-description">@Model.ArticleList[3].CreateDate by <a href="#">@Model.ArticleList[3].Author</a></p>
             <p class="article-list-description">This article is use for testing the article features and preview the layout.</p>
             <a class="btn btn-default article-list-btn" href="/Article/Test">Read more »</a>
             <hr>
         </div>
         <div class="article-list-group">
-            <p class="article-list-title">An Article For Testing</p>
-            <p class="article-list-description"> November 22, 2015 by <a href="#">DwayneTen</a></p>
+            <p class="article-list-title">@Model.ArticleList[4].Title</p>
+            <p class="article-list-description">@Model.ArticleList[4].CreateDate by <a href="#">@Model.ArticleList[4].Author</a></p>
             <p class="article-list-description">This article is use for testing the article features and preview the layout.</p>
             <a class="btn btn-default article-list-btn" href="/Article/Test">Read more »</a>
             <hr>
         </div>
         <nav style="text-align:center;">
+            <p id="currentPageNum"></p>
             <ul class="pagination">
                 <li class=""><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
                 <li class="active"><a href="#">1 </a></li>

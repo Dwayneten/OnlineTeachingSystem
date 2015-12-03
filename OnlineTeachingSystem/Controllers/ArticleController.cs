@@ -19,6 +19,16 @@ namespace OnlineTeachingSystem.Controllers
             alvm.SideBarData = new SideBarViewModel();
             alvm.SideBarData.CurrentIndex = 1;
 
+            ArticleViewModel articleListViewModel = new ArticleViewModel();
+            ArticleBusinessLayer articleBusinessLayer = new ArticleBusinessLayer();
+
+            /* Code by Dwayne 2015-12-3 17:02:50 */
+            const int numPerPage = 5;
+            int pageNum = Int32.Parse(RouteData.Values["id"].ToString()) - 1;
+            List<Article> articleList = articleBusinessLayer.GetArticleList().Skip(pageNum * numPerPage).Take(numPerPage).ToList();
+            alvm.ArticleList = articleList;
+            alvm.PageNum = pageNum;
+
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
                 alvm.NavStatusData = new NavStatusViewModel();

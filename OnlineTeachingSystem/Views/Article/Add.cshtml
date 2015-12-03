@@ -6,34 +6,33 @@
         <h1 class="">Add new article</h1>
         <hr />
         <br />
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mi justo, vehicula eget pellentesque sed, accumsan ut neque. Duis quis pellentesque lorem, sed egestas nulla. Quisque tincidunt volutpat.
+        <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mi justo, vehicula eget pellentesque sed, accumsan ut neque. Duis quis pellentesque lorem, sed egestas nulla. Quisque tincidunt volutpat. -->
         <div class="container-fluid">
             <div class="add-article-container">
                 <form class="" action="/Article/UploadArticle" method="post" id="addArticleForm">
-                    <div class="form-group">
+                    <div class="form-group sm-group">
                         <label class="control-label" for="inputTitle">Title</label>
                         <input type="text" class="form-control" id="inputTitle" placeholder="" required autofocus name="Title">
                         <p>Lorem ipsum dolor sit amet,  cras amet.</p>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group sm-group">
                         <label class="control-label" for="inputName">Author Name</label>
                         <input type="text" class="form-control" id="inputName" required name="Author">
                         <p>Lorem ipsum dolor sit amet,  cras amet.</p>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group sm-group">
                         <label class="control-label" for="inputDate">Create Date</label>
                         <input class="form-control" type="text" value="@Model.CreateDate.ToString("MM/dd/yyyy HH:mm")" readonly name="CreateDate">
-                        <p>Lorem ipsum dolor sit amet,  cras amet.</p>
                     </div>
-                    <div class ="form-group">
+                    <div class="form-group">
                         <label class="control-label" for="inputContent">Article Content</label>
-                        <input class="form-control" type="text" id="inputContent" placeholder="" name="Content">
-                        <p>Lorem ipsum dolor sit amet,  cras amet.</p>
-</div>
-                    <div id="ots-alert" class="alert  add-article-alert alert-@Model.AlertType" style="display:none">@Model.Message</div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return checkAddArticle();">Add article</button>
-            </form>
-        </div>
+                        <textarea class="form-control" id="inputContent" name="Content" rows="10"></textarea>
+                        <p> .</p>
+                    </div>
+                    <div id="ots-alert" class="sm-group alert add-article-alert alert-@Model.AlertType" style="display:none">@Model.Message</div>
+                    <button class="sm-group btn btn-lg btn-primary btn-block" type="submit" onclick="return checkAddArticle();">Add article</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

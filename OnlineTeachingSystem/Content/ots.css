@@ -216,6 +216,11 @@ body {
 .article-list hr {
     margin: 15px 0;
 }
+.article-list #currentPageNum {
+    display: none;
+    height: 0;
+    width: 0;
+}
 
 /*
  * Article list group
@@ -247,6 +252,20 @@ body {
     border-color: #fff;
 }
 
+/*
+* Add Article Page
+*/
+.add-article-container {
+    /* margin-top: 50px; */
+    /* width: 700px; */
+    padding-right: 100px;
+}
+.add-article-container .sm-group {
+    width: 600px;
+}
+.add-article-container textarea {
+    resize:vertical;
+}
 
 /*
 *  Exam Page    
