@@ -70,6 +70,7 @@ namespace OnlineTeachingSystem.Controllers
                         ShowArticle.Content = art.Content;
                         ShowArticle.CreateDate = art.CreateDate;
                         ShowArticle.Title = art.Title;
+                        ShowArticle.description = art.description;
                         FindedFlag = true;
                         break;
                     }
@@ -81,6 +82,7 @@ namespace OnlineTeachingSystem.Controllers
                     articleViewModel.Content = ShowArticle.Content;
                     articleViewModel.CreateDate = ShowArticle.CreateDate;
                     articleViewModel.Title = ShowArticle.Title;
+                    articleViewModel.description = ShowArticle.description;
                 }
             }
 
@@ -101,6 +103,7 @@ namespace OnlineTeachingSystem.Controllers
             readyArticle.Title = Request.Form["Title"];
             readyArticle.CreateDate = Convert.ToDateTime(Request.Form["CreateDate"]);
             readyArticle.Content = Request.Form["Content"];
+            readyArticle.description = Request.Form["description"];
 
             articleBusinessLayer.UploadArticle(readyArticle);
 

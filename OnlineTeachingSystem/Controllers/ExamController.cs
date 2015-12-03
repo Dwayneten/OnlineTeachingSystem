@@ -154,14 +154,14 @@ namespace OnlineTeachingSystem.Controllers
                     case 0:
                         question.First = (range.Cells[rCnt,3] as Excel.Range).Value2.ToString();
                         question.Second = (range.Cells[rCnt, 4] as Excel.Range).Value2.ToString();
-                        question.answer = (int)(range.Cells[rCnt, 7] as Excel.Range).Value2;
+                        question.Answer = (int)(range.Cells[rCnt, 7] as Excel.Range).Value2;
                         break;
                     case 1:
                         question.First = (range.Cells[rCnt, 3] as Excel.Range).Value2.ToString();
                         question.Second = (range.Cells[rCnt, 4] as Excel.Range).Value2.ToString();
                         question.Third = (range.Cells[rCnt, 5] as Excel.Range).Value2.ToString();
                         question.Fourth = (range.Cells[rCnt, 6] as Excel.Range).Value2.ToString();
-                        question.answer = (int)(range.Cells[rCnt, 7] as Excel.Range).Value2;
+                        question.Answer = (int)(range.Cells[rCnt, 7] as Excel.Range).Value2;
                         break;
                 }
                 question.ProblemProperty = (int)(range.Cells[rCnt, 1] as Excel.Range).Value2;
@@ -189,10 +189,6 @@ namespace OnlineTeachingSystem.Controllers
             try
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
-                obj = null;
-            }
-            catch (Exception ex)
-            {
                 obj = null;
             }
             finally
