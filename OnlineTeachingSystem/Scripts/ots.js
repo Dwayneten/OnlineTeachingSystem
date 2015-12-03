@@ -1,6 +1,6 @@
 ﻿/*
 *   Created by Dwayne ‎2015‎-‎11‎-‎24‎ ‏‎15:38:46
-*   Last edit by Dwayne 2015-11-24 22:27:25
+*   Last edit by Dwayne 2015-12-3 13:59:58
 */
 function addLoadEvent(func) {
     var oldonload = window.onload;
@@ -121,6 +121,39 @@ function checkAddArticle() {
     } else {
         form.children[3].className = "form-group";
         form.children[3].firstElementChild.innerText = "Article Content";
+    }
+
+    return ok == 1 ? true : false;
+}
+function checkSuffix(orgin, pattern) {
+    var olen = orgin.length - 1;
+    var plen = pattern.length - 1;
+    var match = 1;
+    while (plen >= 0) {
+        if (orgin[olen--] != pattern[plen--]) {
+            match = 0;
+            break;
+        }
+    }
+    return match == 1 ? true : false;
+}
+function checkAddExam() {
+    var form = $('#addExamForm')[0];
+    var path = $('#inputPath')[0].value;
+    var len = path.length;
+    var ok = 1;
+
+    if (len == 0) {
+        ok = 0;
+        form.children[0].className += " has-error";
+        form.children[0].firstElementChild.innerText = "Please seclect file first.";
+    } else if (len < 5 || !checkSuffix(path, ".xls") && !checkSuffix(path, ".xlsx")) {
+        ok = 0;
+        form.children[0].className += " has-error";
+        form.children[0].firstElementChild.innerText = "Invalid file type.";
+    } else {
+        form.children[0].className = "form-group";
+        form.children[0].firstElementChild.innerText = "Select Excel File";
     }
 
     return ok == 1 ? true : false;

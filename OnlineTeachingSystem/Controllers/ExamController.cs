@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using OnlineTeachingSystem.Models;
 using OnlineTeachingSystem.ViewModels;
+using OnlineTeachingSystem.Filter;
 
 namespace OnlineTeachingSystem.Controllers
 {
@@ -70,6 +71,47 @@ namespace OnlineTeachingSystem.Controllers
             }
             return View("StartExam", examViewModel);
         }
+
+        /* Create by Dwayne */
+        public ActionResult UploadExam()
+        {
+            AddExamViewModel aevm = new AddExamViewModel();
+            aevm.SideBarData = new SideBarViewModel();
+            aevm.SideBarData.CurrentIndex = 2;
+
+            /* Business code here. */
+
+
+            /* if success then */
+            aevm.Message = "Add Exam successfully!";
+            aevm.AlertType = "success";
+            /* if not success then */
+            aevm.Message = "Warning infomation here.";
+            aevm.AlertType = "danger";
+
+            return View("Add", aevm);
+        }
+
+        /* Create by Dwayne  2015-12-3 12:28:49 */
+        [NavStatusFilter]
+        public ActionResult add()
+        {
+            AddExamViewModel aevm = new AddExamViewModel();
+            aevm.SideBarData = new SideBarViewModel();
+            aevm.SideBarData.CurrentIndex = 2;
+
+            if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
+            {
+                aevm.NavStatusData = new NavStatusViewModel();
+                aevm.NavStatusData.LeftLink = "#";
+                aevm.NavStatusData.LeftText = Session["User"].ToString();
+                aevm.NavStatusData.RightLink = "/User/Logout";
+                aevm.NavStatusData.RightText = "Log out";
+            }
+
+            return View("Add", aevm);
+        }
+
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);

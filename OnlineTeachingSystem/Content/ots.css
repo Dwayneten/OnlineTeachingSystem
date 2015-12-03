@@ -1,4 +1,8 @@
 ﻿/*
+*  Last edit by Dwayne 2015-12-3 14:00:29 
+*/
+
+/*
  * Base layout structure
  */
 
@@ -241,4 +245,26 @@ body {
     background-color: #428bda;  
     color: #fff;
     border-color: #fff;
+}
+
+
+/*
+*  Exam Page    
+*/
+
+/*
+ * Add Exam page
+ */
+.add-exam-container{
+    margin-top: 70px;
+    width: 400px;
+    padding-right: 100px;
+}
+.add-exam-container label {
+    font-size: 20px;
+}
+.add-exam-container p {
+    color: grey;
+    margin-top: 10px;
+    font-size: 14px;
 }
