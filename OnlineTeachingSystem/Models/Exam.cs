@@ -16,6 +16,5 @@ namespace OnlineTeachingSystem.Models
         public string Second{ get;set; }
         public string Third{ get;set; }
         public string Fourth{ get;set; }
-        public int ProblemTotal { get; set; }
     }
 }
