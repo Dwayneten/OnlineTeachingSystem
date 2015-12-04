@@ -1,0 +1,29 @@
+﻿@using OnlineTeachingSystem.ViewModels
+@model ExamListViewModel
+@{ViewBag.Title = "Exam List";}
+<div class="row">
+    <div class=" col-sm-12 col-md-8 article-list">
+        <hr>
+        @for (int i = 0; i < Model.ExamNum; ++i)
+        {
+            <div class="article-list-group">
+                <p class="article-list-title">@Model.ExamList[i].ExamName</p>
+                <p class="article-list-description">@Model.ExamList[i].StartTime</p>
+                <a class="btn btn-default article-list-btn" href="/Article/content/@Model.ExamList[i].ExamName">Take it »</a>
+                <hr>
+            </div>
+        }
+        <nav style="text-align:center;">
+            <p id="currentPageNum">@Model.PageNum</p>
+            <ul class="pagination">
+                <li class=""><a href="/Article/@Math.Max(1, Model.PageNum)" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                @for (int i = 1; i <= Math.Ceiling(Model.TotalNum / 5.0); ++i)
+                {
+                    <li><a href="/Article/@i">@i</a></li>
+                }
+                <li><a href="/Article/@Math.Min(Math.Ceiling(Model.TotalNum / 5.0), Model.PageNum+2)" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<script>showCurrentPage();</script>

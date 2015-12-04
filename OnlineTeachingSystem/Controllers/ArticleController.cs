@@ -21,7 +21,6 @@ namespace OnlineTeachingSystem.Controllers
             alvm.SideBarData = new SideBarViewModel();
             alvm.SideBarData.CurrentIndex = 1;
 
-            ArticleViewModel articleListViewModel = new ArticleViewModel();
             ArticleBusinessLayer articleBusinessLayer = new ArticleBusinessLayer();
 
             /* Code by Dwayne 2015-12-3 17:02:50 */
