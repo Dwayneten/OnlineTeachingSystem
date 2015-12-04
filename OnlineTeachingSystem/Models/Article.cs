@@ -14,6 +14,6 @@ namespace OnlineTeachingSystem.Models
         public string Author { get; set; }
         public DateTime CreateDate { get; set; }
         public string Content { get; set; }
-        public string description { get; set; }
+        public string Description { get; set; }
     }
 }
