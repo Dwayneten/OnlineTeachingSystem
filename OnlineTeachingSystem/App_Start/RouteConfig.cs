@@ -18,7 +18,7 @@ namespace OnlineTeachingSystem
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             /* Code by Dwayne 2015-12-3 17:19:56 
-            *  Last edit by Dwayen 2015-12-4 14:59:29
+            *  Last edit by Dwayen 2015-12-4 17:16:45
             */
             routes.MapRoute(
                 name: "Article/Exam list",
@@ -43,6 +43,12 @@ namespace OnlineTeachingSystem
                 name: "Exam",
                 url: "exam/content/{articleId}",
                 defaults: new { action = "ShowExam" }
+            );
+
+            routes.MapRoute(
+                name: "profile",
+                url: "user/profile/{userEmail}",
+                defaults: new { controller = "User", action = "showProfile" }
             );
 
             routes.MapRoute(

@@ -1,0 +1,23 @@
+﻿@using OnlineTeachingSystem.ViewModels
+@model ProfileViewModel
+@{ViewBag.Title = "Profile";}
+<!-- Create by Dwayne 2015-12-4 17:39:35 -->>
+<div class="row exam">
+    <div class="col-sm-12 col-md-8 blog-main">
+        <div class="article-header">
+            <h1 class="article-title">@Model.NickName</h1>
+            <p class="article-description">@Model.Mail</p>
+            <hr />
+        </div>
+        <form class="" action="/User/UserInfoUpdate"method="post" id="signupForm" style="width: 400px">
+            <h2>Change Password</h2>
+            <div class="form-group">
+                <label class="control-label" for="inputPassword">New Password</label>
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password" required="" name="Password">
+                <p>Please input at least 6 character.</p>
+            </div>
+            <div id="ots-alert" class="alert signup-alert alert-@Model.AlertType" style="display:none">@Model.Message</div>
+            <button class="btn btn-md btn-primary btn-block" type="submit">Change</button>
+        </form>
+    </div>
+</div>

@@ -35,7 +35,7 @@ namespace OnlineTeachingSystem.Controllers
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
                 elvm.NavStatusData = new NavStatusViewModel();
-                elvm.NavStatusData.LeftLink = "#";
+                elvm.NavStatusData.LeftLink = "/User/Profile/" + HttpContext.Session["User"].ToString();
                 elvm.NavStatusData.LeftText = Session["User"].ToString();
                 elvm.NavStatusData.RightLink = "/User/Logout";
                 elvm.NavStatusData.RightText = "Log out";
@@ -71,7 +71,7 @@ namespace OnlineTeachingSystem.Controllers
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
                 examlistViewModel.NavStatusData = new NavStatusViewModel();
-                examlistViewModel.NavStatusData.LeftLink = "#";
+                examlistViewModel.NavStatusData.LeftLink = "/User/Profile/" + HttpContext.Session["User"].ToString();
                 examlistViewModel.NavStatusData.LeftText = Session["User"].ToString();
                 examlistViewModel.NavStatusData.RightLink = "/User/Logout";
                 examlistViewModel.NavStatusData.RightText = "Log out";
@@ -167,7 +167,7 @@ namespace OnlineTeachingSystem.Controllers
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
                 aevm.NavStatusData = new NavStatusViewModel();
-                aevm.NavStatusData.LeftLink = "#";
+                aevm.NavStatusData.LeftLink = "/User/Profile/" + HttpContext.Session["User"].ToString();
                 aevm.NavStatusData.LeftText = Session["User"].ToString();
                 aevm.NavStatusData.RightLink = "/User/Logout";
                 aevm.NavStatusData.RightText = "Log out";
@@ -194,7 +194,7 @@ namespace OnlineTeachingSystem.Controllers
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
                 bvm.NavStatusData = new NavStatusViewModel();
-                bvm.NavStatusData.LeftLink = "#";
+                bvm.NavStatusData.LeftLink = "/User/Profile/" + HttpContext.Session["User"].ToString();
                 bvm.NavStatusData.LeftText = Session["User"].ToString();
                 bvm.NavStatusData.RightLink = "/User/Logout";
                 bvm.NavStatusData.RightText = "Log out";
@@ -308,10 +308,21 @@ namespace OnlineTeachingSystem.Controllers
             aevm.SideBarData = new SideBarViewModel();
             aevm.SideBarData.CurrentIndex = 2;
 
+            try 
+            {
+                if (HttpContext.Session["Mail"].ToString() == null || HttpContext.Session["Mail"].ToString() != "admin@ots.com")
+                    Response.Redirect("~");
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.ToString());
+                Response.Redirect("~");
+            }
+
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
                 aevm.NavStatusData = new NavStatusViewModel();
-                aevm.NavStatusData.LeftLink = "#";
+                aevm.NavStatusData.LeftLink = "/User/Profile/" + HttpContext.Session["User"].ToString();
                 aevm.NavStatusData.LeftText = Session["User"].ToString();
                 aevm.NavStatusData.RightLink = "/User/Logout";
                 aevm.NavStatusData.RightText = "Log out";

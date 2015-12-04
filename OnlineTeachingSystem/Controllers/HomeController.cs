@@ -20,7 +20,7 @@ namespace OnlineTeachingSystem.Controllers
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
                 bvm.NavStatusData = new NavStatusViewModel();
-                bvm.NavStatusData.LeftLink = "#";
+                bvm.NavStatusData.LeftLink = "/User/Profile/" + HttpContext.Session["User"].ToString();
                 bvm.NavStatusData.LeftText = Session["User"].ToString();
                 bvm.NavStatusData.RightLink = "/User/Logout";
                 bvm.NavStatusData.RightText = "Log out";
