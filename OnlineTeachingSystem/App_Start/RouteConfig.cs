@@ -35,7 +35,7 @@ namespace OnlineTeachingSystem
 
             routes.MapRoute(
                 name: "Article",
-                url: "article/{articleId}",
+                url: "article/content/{articleId}",
                 defaults: new { controller = "article", action = "getArticle" }
             );
 

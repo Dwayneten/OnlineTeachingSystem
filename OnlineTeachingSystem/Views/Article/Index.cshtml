@@ -7,18 +7,18 @@
         @for (int i = 0; i < Model.ArticleNum; ++i)
         {
             <div class="article-list-group">
-            <p class="article-list-title">@Model.ArticleList[i].Title</p>
-            <p class="article-list-description">@Model.ArticleList[i].CreateDate by <a href="#">@Model.ArticleList[i].Author</a></p>
-            <p class="article-list-description">This article is use for testing the article features and preview the layout.</p>
-            <a class="btn btn-default article-list-btn" href="/Article/Test">Read more »</a>
-            <hr>
-        </div>
+                <p class="article-list-title">@Model.ArticleList[i].Title</p>
+                <p class="article-list-description">@Model.ArticleList[i].CreateDate by <a href="#">@Model.ArticleList[i].Author</a></p>
+                <p class="article-list-description">This article is use for testing the article features and preview the layout.</p>
+                <a class="btn btn-default article-list-btn" href="/Article/content/@Model.ArticleList[i].ArticleID">Read more »</a>
+                <hr>
+            </div>
         }
         <nav style="text-align:center;">
             <p id="currentPageNum">@Model.PageNum</p>
             <ul class="pagination">
                 <li class=""><a href="/Article/@Math.Max(1, Model.PageNum)" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-                @for (int i=1; i<=Math.Ceiling(Model.TotalNum / 5.0); ++i)
+                @for (int i = 1; i <= Math.Ceiling(Model.TotalNum / 5.0); ++i)
                 {
                     <li><a href="/Article/@i">@i</a></li>
                 }

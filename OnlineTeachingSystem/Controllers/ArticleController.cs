@@ -60,12 +60,17 @@ namespace OnlineTeachingSystem.Controllers
 
             return View("Test", bvm);
         }
+
+        [NavStatusFilter]
         public ActionResult GetArticle()
         {
             ArticleViewModel articleViewModel = new ArticleViewModel();
             ArticleBusinessLayer articleBusinessLayer = new ArticleBusinessLayer();
             List<Article> articleList = articleBusinessLayer.GetArticleList();
-            
+
+            articleViewModel.SideBarData = new SideBarViewModel();
+            articleViewModel.SideBarData.CurrentIndex = 1;
+
             // articleViewModel.ArticleList = articleList;
 
             /*  Create by Mimikami 
