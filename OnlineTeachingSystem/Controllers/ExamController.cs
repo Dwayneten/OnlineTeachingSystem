@@ -109,11 +109,7 @@ namespace OnlineTeachingSystem.Controllers
                             userexam.Fourth = t.Fourth;
                         }
 
-<<<<<<< HEAD
-                        //examViewModel.UserExam.Add(userexam);
-=======
                         examViewModel.QuestionList.Add(userexam);
->>>>>>> 95802f2a9d18f6847ca0b627d0e7c5350971422f
                     }
                 }
             }
