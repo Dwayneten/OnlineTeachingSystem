@@ -280,7 +280,7 @@ body {
 }
 
 .exam h1, .exam .h1,
-.exam h2, .v .h2,
+.exam h2, .exam .h2,
 .exam h3, .exam .h3,
 .exam h4, .exam .h4,
 .exam h5, .exam .h5,
@@ -348,4 +348,28 @@ body {
 .exam .btn {
     width: 30%;
     margin-right: 20px;
+}
+
+
+/*
+* About Page    
+*/
+
+.about {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: #555;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.about h1, .about .h1,
+.about h2, .about .h2,
+.about h3, .about .h3,
+.about h4, .about .h4,
+.about h5, .about .h5,
+.about h6, .about .h6 {
+  margin-top: 25px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  color: #333;
 }

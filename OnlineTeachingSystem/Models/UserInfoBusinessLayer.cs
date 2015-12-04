@@ -35,5 +35,13 @@ namespace OnlineTeachingSystem.Models
             otsdbDAL.SaveChanges();
             return userInfo;
         }
+        public void Del(UserInfo userInfo)
+        {
+            OTSDBDAL otsdbDAL = new OTSDBDAL();
+            otsdbDAL.UserInfoList.Attach(userInfo);
+            otsdbDAL.UserInfoList.Remove(userInfo);
+            otsdbDAL.SaveChanges();
+        }
+
     }
 }

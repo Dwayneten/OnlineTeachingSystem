@@ -148,6 +148,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\AddArticleViewModel.cs" />
     <Compile Include="ViewModels\ExamListViewModel.cs" />
+    <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\SideBarViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="ViewModels\NavStatusViewModel.cs" />
@@ -211,6 +212,7 @@
     <Content Include="Views\Exam\Index.cshtml" />
     <Content Include="Views\Exam\Content.cshtml" />
     <Content Include="Views\Exam\Test.cshtml" />
+    <Content Include="Views\User\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

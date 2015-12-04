@@ -27,7 +27,7 @@ namespace OnlineTeachingSystem.Controllers
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
                 signUpViewModel.NavStatusData = new NavStatusViewModel();
-                signUpViewModel.NavStatusData.LeftLink = "#";
+                signUpViewModel.NavStatusData.LeftLink = "/User/Profile/" + HttpContext.Session["User"].ToString();
                 signUpViewModel.NavStatusData.LeftText = Session["User"].ToString();
                 signUpViewModel.NavStatusData.RightLink = "/User/Logout";
                 signUpViewModel.NavStatusData.RightText = "Log out";
@@ -65,6 +65,7 @@ namespace OnlineTeachingSystem.Controllers
             userInfo.NickName = Request.Form["NickName"];
             userInfo.Mail = UniqueEmail(Request.Form["Mail"]);
             userInfo.Password = Request.Form["Password"];
+            userInfo.Grade = 1;
 
             bool SignUpFlag = true;
 
@@ -161,25 +162,65 @@ namespace OnlineTeachingSystem.Controllers
                 return View("Signup", signUpViewModel);
             } 
         }
-        public ActionResult UserInfoUpdata()
+
+        /* Create by Dwayne 2015-12-4 17:25:49 */
+        [NavStatusFilter]
+        public ActionResult showProfile()
+        {
+            ProfileViewModel pvm = new ProfileViewModel();
+
+            if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
+            {
+                pvm.NavStatusData = new NavStatusViewModel();
+                pvm.NavStatusData.LeftLink = "/User/Profile/" + Session["Mail"].ToString();
+                pvm.NavStatusData.LeftText = Session["User"].ToString();
+                pvm.NavStatusData.RightLink = "/User/Logout";
+                pvm.NavStatusData.RightText = "Log out";
+
+                pvm.NickName = Session["User"].ToString();
+                pvm.Mail = Session["Mail"].ToString();
+
+                pvm.SideBarData = new SideBarViewModel();
+                pvm.SideBarData.CurrentIndex = 0;
+            }
+            else
+            {
+                Response.Redirect("~");
+            }
+
+            if (Session["Mail"].ToString() == "admin@ots.com")
+            {
+                pvm.IsAdmin = true;
+            }
+            else
+            {
+                pvm.IsAdmin = false;
+            }
+
+            return View("Profile", pvm);
+        }
+
+        public ActionResult UserInfoUpdate()
         {
             UserInfoBusinessLayer userInfoBusinessLayer = new UserInfoBusinessLayer();
             List<UserInfo> userInfoList = userInfoBusinessLayer.GetUserInfoList();
             UserInfo userInfo = new UserInfo();
 
-            userInfo.Mail = Session["Mail"].ToString();
-            userInfo.NickName = Request.Form["NickName"];
             userInfo.Password = Request.Form["Password"];
+            userInfo.Mail = HttpContext.Session["Mail"].ToString();
             foreach (UserInfo ui in userInfoList)
             {
                 if (ui.Mail == userInfo.Mail)
-                {  
-                    userInfoBusinessLayer.Remove(ui);
+                {
+                    userInfo.Grade = ui.Grade;
+                    userInfo.NickName = ui.NickName;
+                    userInfoBusinessLayer.Del(ui);
                     break;
                 }
             }
             userInfoBusinessLayer.Add(userInfo);
-            return View("");
+            Response.Redirect("~");
+            return View("Profile");
         }
     }
 }

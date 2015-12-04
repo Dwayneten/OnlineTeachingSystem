@@ -31,11 +31,11 @@ namespace OnlineTeachingSystem.Controllers
             alvm.PageNum = pageNum;
             alvm.ArticleNum = alvm.ArticleList.Count;
             alvm.TotalNum = articleList.Count;
-
+            
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
                 alvm.NavStatusData = new NavStatusViewModel();
-                alvm.NavStatusData.LeftLink = "#";
+                alvm.NavStatusData.LeftLink = "/User/Profile/" + HttpContext.Session["User"].ToString();
                 alvm.NavStatusData.LeftText = Session["User"].ToString();
                 alvm.NavStatusData.RightLink = "/User/Logout";
                 alvm.NavStatusData.RightText = "Log out";
@@ -53,7 +53,7 @@ namespace OnlineTeachingSystem.Controllers
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
                 bvm.NavStatusData = new NavStatusViewModel();
-                bvm.NavStatusData.LeftLink = "#";
+                bvm.NavStatusData.LeftLink = "/User/Profile/" + HttpContext.Session["User"].ToString();
                 bvm.NavStatusData.LeftText = Session["User"].ToString();
                 bvm.NavStatusData.RightLink = "/User/Logout";
                 bvm.NavStatusData.RightText = "Log out";
@@ -107,6 +107,16 @@ namespace OnlineTeachingSystem.Controllers
                 }
             }
 
+            if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
+            {
+                articleViewModel.NavStatusData = new NavStatusViewModel();
+                articleViewModel.NavStatusData.LeftLink = "/User/Profile/" + HttpContext.Session["User"].ToString();
+                articleViewModel.NavStatusData.LeftText = Session["User"].ToString();
+                articleViewModel.NavStatusData.RightLink = "/User/Logout";
+                articleViewModel.NavStatusData.RightText = "Log out";
+            }
+
+
             return View("content", articleViewModel);
         }
 
@@ -151,10 +161,21 @@ namespace OnlineTeachingSystem.Controllers
             aavm.SideBarData.CurrentIndex = 1;
             aavm.CreateDate = DateTime.Now;
 
+            try
+            {
+                if (HttpContext.Session["Mail"].ToString() == null || HttpContext.Session["Mail"].ToString() != "admin@ots.com")
+                    Response.Redirect("~");
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.ToString());
+                Response.Redirect("~");
+            }
+
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
                 aavm.NavStatusData = new NavStatusViewModel();
-                aavm.NavStatusData.LeftLink = "#";
+                aavm.NavStatusData.LeftLink = "/User/Profile/" + HttpContext.Session["User"].ToString();
                 aavm.NavStatusData.LeftText = Session["User"].ToString();
                 aavm.NavStatusData.RightLink = "/User/Logout";
                 aavm.NavStatusData.RightText = "Log out";
