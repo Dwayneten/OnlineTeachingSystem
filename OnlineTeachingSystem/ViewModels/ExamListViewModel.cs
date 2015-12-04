@@ -8,6 +8,9 @@ namespace OnlineTeachingSystem.ViewModels
 {
     public class ExamListViewModel : BaseViewModel
     {
-        public List<ExamList> ShowExamList { get; set; }
+        public List<ExamList> ExamList { get; set; }
+        public int PageNum { get; set; }
+        public int TotalNum { get; set; }
+        public int ExamNum { get; set; }
     }
 }
