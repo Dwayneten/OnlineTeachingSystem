@@ -9,7 +9,7 @@ namespace OnlineTeachingSystem.Models
     public class ExamList
     {
         [Key]
-        public string Mail { get; set; }
+        public int Groups { get; set; }
         public string ExamName { get; set; }
         public DateTime StartTime { get; set; }
         public int Duration { get; set; }
