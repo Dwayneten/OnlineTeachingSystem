@@ -36,13 +36,13 @@ namespace OnlineTeachingSystem
             routes.MapRoute(
                 name: "Article",
                 url: "article/content/{articleId}",
-                defaults: new { action = "getArticle" }
+                defaults: new { controller = "article", action = "getArticle" }
             );
 
             routes.MapRoute(
                 name: "Exam",
                 url: "exam/content/{articleId}",
-                defaults: new { action = "ShowExam" }
+                defaults: new { controller = "exam", action = "ShowExam" }
             );
 
             routes.MapRoute(
