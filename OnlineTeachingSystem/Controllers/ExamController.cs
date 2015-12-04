@@ -121,6 +121,15 @@ namespace OnlineTeachingSystem.Controllers
             examViewModel.QuestionNum = examViewModel.QuestionList.Count;
             examViewModel.Name = examName;
 
+            if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
+            {
+                examViewModel.NavStatusData = new NavStatusViewModel();
+                examViewModel.NavStatusData.LeftLink = "/User/Profile/" + HttpContext.Session["User"].ToString();
+                examViewModel.NavStatusData.LeftText = Session["User"].ToString();
+                examViewModel.NavStatusData.RightLink = "/User/Logout";
+                examViewModel.NavStatusData.RightText = "Log out";
+            }
+
             return View("StartExam", examViewModel);
         }
 

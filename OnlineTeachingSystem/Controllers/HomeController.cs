@@ -39,9 +39,19 @@ namespace OnlineTeachingSystem.Controllers
         [NavStatusFilter]
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            BaseViewModel bvm = new BaseViewModel();
+            bvm.SideBarData = new SideBarViewModel();
+            bvm.SideBarData.CurrentIndex = 3;
 
-            return View(new BaseViewModel());
+            if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
+            {
+                bvm.NavStatusData = new NavStatusViewModel();
+                bvm.NavStatusData.LeftLink = "/User/Profile/" + HttpContext.Session["User"].ToString();
+                bvm.NavStatusData.LeftText = Session["User"].ToString();
+                bvm.NavStatusData.RightLink = "/User/Logout";
+                bvm.NavStatusData.RightText = "Log out";
+            }
+            return View("About", bvm);
         }
 
         [NavStatusFilter]

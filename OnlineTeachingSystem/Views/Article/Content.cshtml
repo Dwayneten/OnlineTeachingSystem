@@ -1,11 +1,15 @@
 ﻿@using OnlineTeachingSystem.ViewModels
 @model ArticleViewModel
 @{ViewBag.Title = @Model.Title;}
-
-<div id="articleContent">
-    @Model.Content
+<div class="row article">
+    <div class="col-sm-12 col-md-8 blog-main">
+        <div id="articleContent" style="display: none;">
+            @Model.Content
+        </div>
+    </div>
 </div>
 <script>
     var t = $('#articleContent')[0];
     t.innerHTML = t.innerText;
+    t.style.display = "block";
 </script>

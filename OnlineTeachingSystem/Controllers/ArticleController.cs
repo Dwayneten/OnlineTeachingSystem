@@ -107,6 +107,16 @@ namespace OnlineTeachingSystem.Controllers
                 }
             }
 
+            if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
+            {
+                articleViewModel.NavStatusData = new NavStatusViewModel();
+                articleViewModel.NavStatusData.LeftLink = "/User/Profile/" + HttpContext.Session["User"].ToString();
+                articleViewModel.NavStatusData.LeftText = Session["User"].ToString();
+                articleViewModel.NavStatusData.RightLink = "/User/Logout";
+                articleViewModel.NavStatusData.RightText = "Log out";
+            }
+
+
             return View("content", articleViewModel);
         }
 
