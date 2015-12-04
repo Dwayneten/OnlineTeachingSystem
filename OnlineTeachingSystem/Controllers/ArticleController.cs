@@ -25,9 +25,11 @@ namespace OnlineTeachingSystem.Controllers
             /* Code by Dwayne 2015-12-3 17:02:50 */
             const int numPerPage = 5;
             int pageNum = Int32.Parse(RouteData.Values["id"].ToString()) - 1;
-            List<Article> articleList = articleBusinessLayer.GetArticleList().Skip(pageNum * numPerPage).Take(numPerPage).ToList();
-            alvm.ArticleList = articleList;
+            List<Article> articleList = articleBusinessLayer.GetArticleList();
+            alvm.ArticleList = articleList.Skip(pageNum * numPerPage).Take(numPerPage).ToList();
             alvm.PageNum = pageNum;
+            alvm.ArticleNum = alvm.ArticleList.Count;
+            alvm.TotalNum = articleList.Count;
 
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
@@ -66,7 +68,10 @@ namespace OnlineTeachingSystem.Controllers
             
             // articleViewModel.ArticleList = articleList;
 
-            int articleID = Convert.ToInt32(Request.QueryString["ArticleID"]);
+            /*  Create by Mimikami 
+            *   Edit by Dwayne
+            */
+            int articleID = Convert.ToInt32(RouteData.Values["articleId"].ToString());
             if(articleID != 0)
             {
                 Article ShowArticle = new Article();
@@ -96,7 +101,7 @@ namespace OnlineTeachingSystem.Controllers
                 }
             }
 
-            return View("Test");
+            return View("content", articleViewModel);
         }
 
         [NavStatusFilter]
@@ -123,7 +128,7 @@ namespace OnlineTeachingSystem.Controllers
             return View("Add", aavm);
         }
 
-        /* Add artcle page message and logic. Code by Dwayne*/
+        /* Add artcle page message and logic. Code by Dwayne */
         [NavStatusFilter]
         public ActionResult Add()
         {

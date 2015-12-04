@@ -4,52 +4,27 @@
 <div class="row">
     <div class=" col-sm-12 col-md-8 article-list">
         <hr>
-        <div class="article-list-group">
-            <p class="article-list-title">@Model.ArticleList[0].Title</p>
-            <p class="article-list-description">@Model.ArticleList[0].CreateDate by <a href="#">@Model.ArticleList[0].Author</a></p>
+        @for (int i = 0; i < Model.ArticleNum; ++i)
+        {
+            <div class="article-list-group">
+            <p class="article-list-title">@Model.ArticleList[i].Title</p>
+            <p class="article-list-description">@Model.ArticleList[i].CreateDate by <a href="#">@Model.ArticleList[i].Author</a></p>
             <p class="article-list-description">This article is use for testing the article features and preview the layout.</p>
             <a class="btn btn-default article-list-btn" href="/Article/Test">Read more »</a>
             <hr>
         </div>
-        <div class="article-list-group">
-            <p class="article-list-title">@Model.ArticleList[1].Title</p>
-            <p class="article-list-description">@Model.ArticleList[1].CreateDate by <a href="#">@Model.ArticleList[1].Author</a></p>
-            <p class="article-list-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id eleifend nibh. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
-            <a class="btn btn-default article-list-btn" href="/Article/Test">Read more »</a>
-            <hr>
-        </div>
-        <div class="article-list-group">
-            <p class="article-list-title">@Model.ArticleList[2].Title</p>
-            <p class="article-list-description">@Model.ArticleList[2].CreateDate by <a href="#">@Model.ArticleList[2].Author</a></p>
-            <p class="article-list-description"></p>
-            <a class="btn btn-default article-list-btn" href="/Article/Test">Read more »</a>
-            <hr>
-        </div>
-        <div class="article-list-group">
-            <p class="article-list-title">@Model.ArticleList[3].Title</p>
-            <p class="article-list-description">@Model.ArticleList[3].CreateDate by <a href="#">@Model.ArticleList[3].Author</a></p>
-            <p class="article-list-description">This article is use for testing the article features and preview the layout.</p>
-            <a class="btn btn-default article-list-btn" href="/Article/Test">Read more »</a>
-            <hr>
-        </div>
-        <div class="article-list-group">
-            <p class="article-list-title">@Model.ArticleList[4].Title</p>
-            <p class="article-list-description">@Model.ArticleList[4].CreateDate by <a href="#">@Model.ArticleList[4].Author</a></p>
-            <p class="article-list-description">This article is use for testing the article features and preview the layout.</p>
-            <a class="btn btn-default article-list-btn" href="/Article/Test">Read more »</a>
-            <hr>
-        </div>
+        }
         <nav style="text-align:center;">
-            <p id="currentPageNum"></p>
+            <p id="currentPageNum">@Model.PageNum</p>
             <ul class="pagination">
-                <li class=""><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-                <li class="active"><a href="#">1 </a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                <li class=""><a href="/Article/@Math.Max(1, Model.PageNum)" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                @for (int i=1; i<=Math.Ceiling(Model.TotalNum / 5.0); ++i)
+                {
+                    <li><a href="/Article/@i">@i</a></li>
+                }
+                <li><a href="/Article/@Math.Min(Math.Ceiling(Model.TotalNum / 5.0), Model.PageNum+2)" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
             </ul>
         </nav>
     </div>
 </div>
+<script>showCurrentPage();</script>

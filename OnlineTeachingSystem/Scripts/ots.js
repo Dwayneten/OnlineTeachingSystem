@@ -165,3 +165,8 @@ function showLogin() {
         $('#login-alert')[0].style.padding = "5px 15px 5px 15px";
     }
 }
+function showCurrentPage() {
+    var currentPageNum = parseInt($('#currentPageNum')[0].innerText) + 1;
+    var ul = $('.pagination')[0];
+    $(ul.children[currentPageNum]).addClass('active');
+}
