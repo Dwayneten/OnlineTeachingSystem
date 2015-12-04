@@ -22,21 +22,21 @@ namespace OnlineTeachingSystem
             */
             routes.MapRoute(
                 name: "Article list",
-                url: "article/{id}",
-                defaults: new { controller = "article", action = "Index", id = 1 },
+                url: "{controller}/{id}",
+                defaults: new { action = "Index", id = 1 },
                 constraints: new {id = @"\d+" }
             );
 
             routes.MapRoute(
                 name: "Add article",
-                url: "article/add",
-                defaults: new { controller = "article", action = "Add" }
+                url: "{controller}/add",
+                defaults: new { action = "Add" }
             );
 
             routes.MapRoute(
                 name: "Article",
-                url: "article/content/{articleId}",
-                defaults: new { controller = "article", action = "getArticle" }
+                url: "{controller}/content/{articleId}",
+                defaults: new { action = "getArticle" }
             );
 
             routes.MapRoute(

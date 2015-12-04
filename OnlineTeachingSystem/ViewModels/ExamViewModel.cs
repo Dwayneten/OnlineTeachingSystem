@@ -8,6 +8,6 @@ namespace OnlineTeachingSystem.ViewModels
 {
     public class ExamViewModel : BaseViewModel
     {
-        public List<Exam> UserExam { get; set; }
+        
     }
 }
