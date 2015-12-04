@@ -17,12 +17,26 @@ namespace OnlineTeachingSystem
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            /* Code by Dwayne 2015-12-3 17:19:56 */
+            /* Code by Dwayne 2015-12-3 17:19:56 
+            *  Last edit by Dwayen 2015-12-4 10:45:29
+            */
             routes.MapRoute(
-                name: "Article",
+                name: "Article list",
                 url: "article/{id}",
                 defaults: new { controller = "article", action = "Index", id = 1 },
                 constraints: new {id = @"\d+" }
+            );
+
+            routes.MapRoute(
+                name: "Add article",
+                url: "article/add",
+                defaults: new { controller = "article", action = "Add" }
+            );
+
+            routes.MapRoute(
+                name: "Article",
+                url: "article/content/{articleId}",
+                defaults: new { controller = "article", action = "getArticle" }
             );
 
             routes.MapRoute(
