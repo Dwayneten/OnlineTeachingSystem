@@ -50,16 +50,16 @@ namespace OnlineTeachingSystem.Controllers
             ExamListBusinessLayer examlistBusinessLayer = new ExamListBusinessLayer();
             List<ExamList> examList = examlistBusinessLayer.GetExamList();
 
-            int GroupID = Convert.ToInt32(Request.QueryString["Group"]);
-            if (GroupID != 0)
+            int GradeID = Convert.ToInt32(Request.QueryString["Grade"]);
+            if (GradeID != 0)
             {
                 ExamList ShowExamlist = new ExamList();
                 foreach (ExamList examlist in examList)
                 {
-                    if (examlist.Groups == GroupID)
+                    if (examlist.Grade == GradeID)
                     {
                         ShowExamlist.ExamName = examlist.ExamName;
-                        ShowExamlist.Groups = examlist.Groups;
+                        ShowExamlist.Grade = examlist.Grade;
                         ShowExamlist.StartTime = examlist.StartTime;
                         ShowExamlist.Duration = examlist.Duration;
 
@@ -109,7 +109,11 @@ namespace OnlineTeachingSystem.Controllers
                             userexam.Fourth = t.Fourth;
                         }
 
+<<<<<<< HEAD
+                        //examViewModel.UserExam.Add(userexam);
+=======
                         examViewModel.QuestionList.Add(userexam);
+>>>>>>> 95802f2a9d18f6847ca0b627d0e7c5350971422f
                     }
                 }
             }
