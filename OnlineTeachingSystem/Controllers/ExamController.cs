@@ -99,7 +99,7 @@ namespace OnlineTeachingSystem.Controllers
                             userexam.Fourth = t.Fourth;
                         }
 
-                        examViewModel.UserExam.Add(userexam);
+                        examViewModel.QuestionList.Add(userexam);
                     }
                 }
             }
@@ -177,51 +177,61 @@ namespace OnlineTeachingSystem.Controllers
             examFile.SaveAs(filePath);
             List<Exam> questionList = new List<Exam>();
 
-            Excel.Application xlApp;
-            Excel.Workbook xlWorkBook;
-            Excel.Worksheet xlWorkSheet;
-            Excel.Range range;
-            
-            int rCnt;
+            try
+            {
+                Excel.Application xlApp;
+                Excel.Workbook xlWorkBook;
+                Excel.Worksheet xlWorkSheet;
+                Excel.Range range;
 
-            xlApp = new Excel.Application();
-            xlWorkBook = xlApp.Workbooks.Open(filePath, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
-            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+                int rCnt;
 
-            range = xlWorkSheet.UsedRange;
+                xlApp = new Excel.Application();
+                xlWorkBook = xlApp.Workbooks.Open(filePath, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
 
-            for (rCnt = 1; rCnt <= range.Rows.Count; rCnt++) {
-                Exam question = new Exam();
-                question.ExamName = filename;
-                question.Problem = (range.Cells[rCnt, 2] as Excel.Range).Value2.ToString();
-                switch ((int)(range.Cells[rCnt, 1] as Excel.Range).Value2) {
-                    case 0:
-                        question.First = (range.Cells[rCnt,3] as Excel.Range).Value2.ToString();
-                        question.Second = (range.Cells[rCnt, 4] as Excel.Range).Value2.ToString();
-                        question.Answer = (int)(range.Cells[rCnt, 7] as Excel.Range).Value2;
-                        break;
-                    case 1:
-                        question.First = (range.Cells[rCnt, 3] as Excel.Range).Value2.ToString();
-                        question.Second = (range.Cells[rCnt, 4] as Excel.Range).Value2.ToString();
-                        question.Third = (range.Cells[rCnt, 5] as Excel.Range).Value2.ToString();
-                        question.Fourth = (range.Cells[rCnt, 6] as Excel.Range).Value2.ToString();
-                        question.Answer = (int)(range.Cells[rCnt, 7] as Excel.Range).Value2;
-                        break;
+                range = xlWorkSheet.UsedRange;
+
+                for (rCnt = 2; rCnt <= range.Rows.Count; rCnt++)
+                {
+                    Exam question = new Exam();
+                    question.ExamName = filename;
+                    question.Problem = (range.Cells[rCnt, 2] as Excel.Range).Value2.ToString();
+                    switch ((int)(range.Cells[rCnt, 1] as Excel.Range).Value2)
+                    {
+                        case 0:
+                            question.First = (range.Cells[rCnt, 3] as Excel.Range).Value2.ToString();
+                            question.Second = (range.Cells[rCnt, 4] as Excel.Range).Value2.ToString();
+                            question.Answer = (int)(range.Cells[rCnt, 7] as Excel.Range).Value2;
+                            break;
+                        case 1:
+                            question.First = (range.Cells[rCnt, 3] as Excel.Range).Value2.ToString();
+                            question.Second = (range.Cells[rCnt, 4] as Excel.Range).Value2.ToString();
+                            question.Third = (range.Cells[rCnt, 5] as Excel.Range).Value2.ToString();
+                            question.Fourth = (range.Cells[rCnt, 6] as Excel.Range).Value2.ToString();
+                            question.Answer = (int)(range.Cells[rCnt, 7] as Excel.Range).Value2;
+                            break;
+                    }
+                    question.ProblemProperty = (int)(range.Cells[rCnt, 1] as Excel.Range).Value2;
+
+                    questionList.Add(question);
                 }
-                question.ProblemProperty = (int)(range.Cells[rCnt, 1] as Excel.Range).Value2;
 
-                questionList.Add(question);
+                xlWorkBook.Close(true, null, null);
+                xlApp.Quit();
+
+                releaseObject(xlWorkSheet);
+                releaseObject(xlWorkBook);
+                releaseObject(xlApp);
+
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
             }
-
-            xlWorkBook.Close(true, null, null);
-            xlApp.Quit();
-
-            releaseObject(xlWorkSheet);
-            releaseObject(xlWorkBook);
-            releaseObject(xlApp);
-
-            if(System.IO.File.Exists(filePath)) {
-                System.IO.File.Delete(filePath);
+            catch(Exception ex)
+            {
+                questionList = null;
             }
 
             return questionList;
