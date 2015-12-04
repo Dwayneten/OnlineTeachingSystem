@@ -9,7 +9,7 @@
             <div class="article-list-group">
                 <p class="article-list-title">@Model.ArticleList[i].Title</p>
                 <p class="article-list-description">@Model.ArticleList[i].CreateDate by <a href="#">@Model.ArticleList[i].Author</a></p>
-                <p class="article-list-description">This article is use for testing the article features and preview the layout.</p>
+                <p class="article-list-description">@Model.ArticleList[i].Description</p>
                 <a class="btn btn-default article-list-btn" href="/Article/content/@Model.ArticleList[i].ArticleID">Read more »</a>
                 <hr>
             </div>

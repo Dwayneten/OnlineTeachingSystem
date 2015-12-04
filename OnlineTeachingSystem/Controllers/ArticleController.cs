@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using OnlineTeachingSystem.Models;
+using MarkdownSharp;
+using System.Text.RegularExpressions;
 
 namespace OnlineTeachingSystem.Controllers
 {
@@ -110,6 +112,7 @@ namespace OnlineTeachingSystem.Controllers
         }
 
         [NavStatusFilter]
+        [ValidateInput(false)]
         public ActionResult UploadArticle()
         {
             AddArticleViewModel aavm = new AddArticleViewModel();
@@ -117,13 +120,20 @@ namespace OnlineTeachingSystem.Controllers
             aavm.SideBarData.CurrentIndex = 1;
             aavm.CreateDate = DateTime.Now;
 
+            Markdown m = new Markdown();
+            Regex rgx = new Regex("<[^>]+>");
+            String TEMP;
+            
             Article readyArticle = new Article();
             ArticleBusinessLayer articleBusinessLayer = new ArticleBusinessLayer();
             readyArticle.Author = Request.Form["Author"];
             readyArticle.Title = Request.Form["Title"];
             readyArticle.CreateDate = Convert.ToDateTime(Request.Form["CreateDate"]);
-            readyArticle.Content = Request.Form["Content"];
-            readyArticle.Description = readyArticle.Content.Substring(0, 80) + "...";
+            readyArticle.Content = m.Transform(Request.Unvalidated.Form["Content"]);
+            TEMP = rgx.Replace(readyArticle.Content, " ");
+            TEMP = TEMP.Replace("\n", "");
+            if (TEMP.Length >= 80) readyArticle.Description = TEMP.Substring(0, 79)+"...";
+            else readyArticle.Description = TEMP.Substring(0)+"...";
 
             articleBusinessLayer.UploadArticle(readyArticle);
 
