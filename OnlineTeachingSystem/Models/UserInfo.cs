@@ -13,6 +13,6 @@ namespace OnlineTeachingSystem.Models
         public string NickName { get; set; }
         public string Mail { get; set; }
         public string Password { get; set; }
-        public int Groups { set; get; }
+        public int Grade { set; get; }
     }
 }
