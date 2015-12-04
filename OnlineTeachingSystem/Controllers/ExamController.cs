@@ -50,16 +50,16 @@ namespace OnlineTeachingSystem.Controllers
             ExamListBusinessLayer examlistBusinessLayer = new ExamListBusinessLayer();
             List<ExamList> examList = examlistBusinessLayer.GetExamList();
 
-            string mailID = Convert.ToString(Request.QueryString["Mail"]);
-            if (mailID != null)
+            int GroupID = Convert.ToInt32(Request.QueryString["Group"]);
+            if (GroupID != 0)
             {
                 ExamList ShowExamlist = new ExamList();
                 foreach (ExamList examlist in examList)
                 {
-                    if (examlist.Mail == mailID)
+                    if (examlist.Groups == GroupID)
                     {
                         ShowExamlist.ExamName = examlist.ExamName;
-                        ShowExamlist.Mail = examlist.Mail;
+                        ShowExamlist.Groups = examlist.Groups;
                         ShowExamlist.StartTime = examlist.StartTime;
                         ShowExamlist.Duration = examlist.Duration;
 
