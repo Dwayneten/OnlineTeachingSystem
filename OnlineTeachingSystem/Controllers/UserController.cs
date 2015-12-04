@@ -159,5 +159,25 @@ namespace OnlineTeachingSystem.Controllers
                 return View("Signup", signUpViewModel);
             } 
         }
+        public ActionResult UserInfoUpdata()
+        {
+            UserInfoBusinessLayer userInfoBusinessLayer = new UserInfoBusinessLayer();
+            List<UserInfo> userInfoList = userInfoBusinessLayer.GetUserInfoList();
+            UserInfo userInfo = new UserInfo();
+
+            userInfo.Mail = Session["Mail"].ToString();
+            userInfo.NickName = Request.Form["NickName"];
+            userInfo.Password = Request.Form["Password"];
+            foreach (UserInfo ui in userInfoList)
+            {
+                if (ui.Mail == userInfo.Mail)
+                {  
+                    userInfoBusinessLayer.Remove(ui);
+                    break;
+                }
+            }
+            userInfoBusinessLayer.Add(userInfo);
+            return View("");
+        }
     }
 }
