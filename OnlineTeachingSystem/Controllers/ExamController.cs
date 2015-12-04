@@ -99,7 +99,7 @@ namespace OnlineTeachingSystem.Controllers
                             userexam.Fourth = t.Fourth;
                         }
 
-                        examViewModel.UserExam.Add(userexam);
+                        examViewModel.QuestionList.Add(userexam);
                     }
                 }
             }

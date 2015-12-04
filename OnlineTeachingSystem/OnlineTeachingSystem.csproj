@@ -206,6 +206,7 @@
     <Content Include="Views\Article\Content.cshtml" />
     <Content Include="Views\Exam\Index.cshtml" />
     <Content Include="Views\Exam\Content.cshtml" />
+    <Content Include="Views\Exam\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
