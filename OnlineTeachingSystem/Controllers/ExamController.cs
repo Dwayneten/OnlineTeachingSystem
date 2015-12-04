@@ -12,6 +12,37 @@ namespace OnlineTeachingSystem.Controllers
 {
     public class ExamController : Controller
     {
+        /* Create by Dwayne 2015-12-4 12:51:57 */
+        [NavStatusFilter]
+        public ActionResult Index()
+        {
+            ExamListViewModel elvm = new ExamListViewModel();
+            elvm.SideBarData = new SideBarViewModel();
+            elvm.SideBarData.CurrentIndex = 2;
+
+            ExamListBusinessLayer examlistBusinessLayer = new ExamListBusinessLayer();
+            
+
+            /* Code by Dwayne 2015-12-4 12:57:17 */
+            const int numPerPage = 5;
+            int pageNum = Int32.Parse(RouteData.Values["id"].ToString()) - 1;
+            List<ExamList> examList = examlistBusinessLayer.GetExamList();
+            elvm.ExamList = examList.Skip(pageNum * numPerPage).Take(numPerPage).ToList();
+            elvm.PageNum = pageNum;
+            elvm.ExamNum = elvm.ExamList.Count;
+            elvm.TotalNum = examList.Count;
+
+            if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
+            {
+                elvm.NavStatusData = new NavStatusViewModel();
+                elvm.NavStatusData.LeftLink = "#";
+                elvm.NavStatusData.LeftText = Session["User"].ToString();
+                elvm.NavStatusData.RightLink = "/User/Logout";
+                elvm.NavStatusData.RightText = "Log out";
+            }
+            return View("", elvm);
+        }
+
         public ActionResult ExamList()
         {
 
@@ -32,7 +63,7 @@ namespace OnlineTeachingSystem.Controllers
                         ShowExamlist.StartTime = examlist.StartTime;
                         ShowExamlist.Duration = examlist.Duration;
 
-                        examlistViewModel.ShowExamList.Add(ShowExamlist);
+                        examlistViewModel.ExamList.Add(ShowExamlist);
                     }
                 }
             }
