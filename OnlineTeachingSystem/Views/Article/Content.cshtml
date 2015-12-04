@@ -2,4 +2,10 @@
 @model ArticleViewModel
 @{ViewBag.Title = @Model.Title;}
 
-@Model.Content
+<div id="articleContent">
+    @Model.Content
+</div>
+<script>
+    var t = $('#articleContetn')[0];
+    t.innerHTML = t.innerText;
+</script>
