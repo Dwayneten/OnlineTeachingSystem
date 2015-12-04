@@ -187,8 +187,6 @@ body {
 }
 .article-title {
   margin-top: 30px;
-  margin-bottom: 0;
-  font-size: 60px;
   font-weight: normal;
 }
 .article-description {
@@ -272,8 +270,30 @@ body {
 */
 
 /*
- * Add Exam page
- */
+   Genera    
+*/
+.exam {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: #555;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.exam h1, .exam .h1,
+.exam h2, .v .h2,
+.exam h3, .exam .h3,
+.exam h4, .exam .h4,
+.exam h5, .exam .h5,
+.exam h6, .exam .h6 {
+  margin-top: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  color: #333;
+}
+
+/*
+*  Add Exam page
+*/
 .add-exam-container{
     margin-top: 70px;
     width: 400px;
@@ -286,4 +306,46 @@ body {
     color: grey;
     margin-top: 10px;
     font-size: 14px;
+}
+
+/*
+*  Exam Page
+*/
+.exam-header {
+    padding-top: 20px;
+    /*padding-bottom: 20px;*/
+}
+.exam-title {
+    margin-top: 30px;
+    margin-bottom: 5px;
+    font-size: 40px;
+    font-weight: normal;
+}
+.exam-description {
+    font-size: 20px;
+    color: #999;
+}
+.exam dl {
+    margin-bottom: 30px;
+}
+.exam dt {
+    font-size: 24px;
+}
+.exam dd {
+    font-size: 18px;
+    padding-left: 25px;
+}
+.exam .radio-inline {
+    margin-top: 10px;
+}
+.exam .radio-inline label {
+    font-weight: normal;
+    padding-left: 20px;
+}
+.exam dd img {
+    max-width: 300px;
+}
+.exam .btn {
+    width: 30%;
+    margin-right: 20px;
 }

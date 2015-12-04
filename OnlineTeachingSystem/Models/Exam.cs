@@ -18,5 +18,6 @@ namespace OnlineTeachingSystem.Models
         public string Third{ get;set; }
         public string Fourth{ get;set; }
         public int Answer { get; set; }
+        public string ImgSrc { get; set; }
     }
 }

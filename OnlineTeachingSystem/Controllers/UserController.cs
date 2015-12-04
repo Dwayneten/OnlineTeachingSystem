@@ -136,6 +136,7 @@ namespace OnlineTeachingSystem.Controllers
             {
                 if (ui.Mail == userInfo.Mail && ui.Password == userInfo.Password)
                 {
+                    userInfo.NickName = ui.NickName;
                     LoginFlag = true;
                     break;
                 }
@@ -146,7 +147,8 @@ namespace OnlineTeachingSystem.Controllers
             {
                 signUpViewModel.NavStatusData.AlertType = "success";
                 signUpViewModel.NavStatusData.Message = "Login successfully!";
-                HttpContext.Session["User"] = userInfo.Mail;
+                HttpContext.Session["Mail"] = userInfo.Mail;
+                HttpContext.Session["User"] = userInfo.NickName;
 
                 Response.Redirect("~");
                 return View("Index", signUpViewModel);

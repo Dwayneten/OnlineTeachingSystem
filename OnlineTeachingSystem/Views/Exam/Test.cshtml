@@ -2,18 +2,78 @@
     ViewBag.Title = "Test";
 }
 
-<div class="row article">
+<div class="row exam">
     <div class="col-sm-12 col-md-8 blog-main">
-        <div class="article-header">
-            <h1 class="article-title">An Article For Testing</h1>
-            <p class="article-description">November 22, 2015 by <a href="http://www.dwayneten.com">DwayneTen</a></p>
-            <p class="article-description">This article is use for testing the article features and preview the layout.</p>
+        <div class="exam-header">
+            <h1 class="exam-title">Sample Exam</h1>
+            <p class="exam-description">Here are some description about this exam.</p>
             <hr />
         </div>
-        <div class="article-box">
-            <h2>Heading</h2>
-
-
-        </div>
+        <form name="examForm" action="/Exam/CheckAnswer">
+            <dl>
+                <dt>1. Here is a seclect question that has 4 radio box.</dt>
+                <dd><img class="center-block" src="" /></dd>
+                <dd class="radio">
+                    <label>
+                        <input type="radio" name="examInfo[1].userAnswer" id="P_A_1" value="A" >
+                        Radio 1
+                    </label>
+                </dd>
+                <dd class="radio">
+                    <label>
+                        <input type="radio" name="examInfo[1].userAnswer" id="P_B_1" value="B" >
+                        Radio 2 Radio 2 Radio 2 Radio 2 Radio 2
+                    </label>
+                </dd>
+                <dd class="radio">
+                    <label>
+                        <input type="radio" name="examInfo[1].userAnswer" id="P_C_1" value="C" >
+                        Radio 33333
+                    </label>
+                </dd>
+                <dd class="radio">
+                    <label>
+                        <input type="radio" name="examInfo[1].userAnswer" id="P_D_1" value="D" >
+                        Radio Radio 4
+                    </label>
+                </dd>
+            </dl>
+            <img src="" />
+            <dl>
+                <dt>2. Here is a judge question that has 2 radio box.</dt>
+                <dd><img class="center-block" src="" /></dd>
+                <dd class="radio-inline">
+                    <label>
+                        <input type="radio" name="examInfo[2].userAnswer" id="P_A_2" value="A">
+                        Yes
+                    </label>
+                </dd>
+                <dd class="radio-inline">
+                    <label>
+                        <input type="radio" name="examInfo[2].userAnswer" id="P_B_2" value="B">
+                        No
+                    </label>
+                </dd>
+            </dl>
+            <img src="" />
+            <dl>
+                <dt>3. Here is a judge question with image.</dt>
+                <dd><img class="center-block" src="/Images/test.bmp" /></dd>
+                <dd class="radio-inline">
+                    <label>
+                        <input type="radio" name="examInfo[3].userAnswer" id="P_A_3" value="A">
+                        Yes
+                    </label>
+                </dd>
+                <dd class="radio-inline">
+                    <label>
+                        <input type="radio" name="examInfo[3].userAnswer" id="P_B_3" value="B">
+                        No
+                    </label>
+                </dd>
+            </dl>
+            <button class="btn btn-lg btn-primary" type="submit">Submit</button>
+            <button class="btn btn-lg btn-warning" type="reset">Reset</button>
+        </form>
     </div>
 </div>

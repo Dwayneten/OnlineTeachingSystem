@@ -68,6 +68,15 @@ namespace OnlineTeachingSystem.Controllers
                 }
             }
 
+            if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
+            {
+                examlistViewModel.NavStatusData = new NavStatusViewModel();
+                examlistViewModel.NavStatusData.LeftLink = "#";
+                examlistViewModel.NavStatusData.LeftText = Session["User"].ToString();
+                examlistViewModel.NavStatusData.RightLink = "/User/Logout";
+                examlistViewModel.NavStatusData.RightText = "Log out";
+            }
+
             return View("ExamList", examlistViewModel);
         }
         /* show exam */ 
@@ -90,6 +99,7 @@ namespace OnlineTeachingSystem.Controllers
                         userexam.Problem = t.Problem;
                         userexam.ProblemProperty = t.ProblemProperty;
                         userexam.Answer = t.Answer;
+                        userexam.ImgSrc = t.ImgSrc;
                         // single-choice question
                         if (userexam.ProblemProperty == 1)
                         {
@@ -103,6 +113,14 @@ namespace OnlineTeachingSystem.Controllers
                     }
                 }
             }
+            else
+            {
+                Response.Redirect("~");
+            }
+
+            examViewModel.QuestionNum = examViewModel.QuestionList.Count;
+            examViewModel.Name = examName;
+
             return View("StartExam", examViewModel);
         }
 
@@ -116,8 +134,7 @@ namespace OnlineTeachingSystem.Controllers
             ExamBusinessLayer EBL = new ExamBusinessLayer();
 
             /* Business code here. */
-            bool IsSuccessUpload = false;
-            if (HttpContext.Session["User"].ToString()=="Admin")
+            if (HttpContext.Session["Mail"].ToString()=="admin@ots.com")
             {
                 HttpPostedFileBase examFile = Request.Files["examFile"];
                 List<Exam> examList = new List<Exam>();
@@ -141,18 +158,49 @@ namespace OnlineTeachingSystem.Controllers
                     }
                 }
             }
+            else
+            {
+                Response.Redirect("~");
+                return View("");
+            }
 
-            if (IsSuccessUpload == true) /* if success then */
+            if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
-                aevm.Message = "Add Exam successfully!";
-                aevm.AlertType = "success";
+                aevm.NavStatusData = new NavStatusViewModel();
+                aevm.NavStatusData.LeftLink = "#";
+                aevm.NavStatusData.LeftText = Session["User"].ToString();
+                aevm.NavStatusData.RightLink = "/User/Logout";
+                aevm.NavStatusData.RightText = "Log out";
             }
-            else /* if not success then */
-            {
-                aevm.Message = "Warning infomation here.";
-                aevm.AlertType = "danger";
-            }
+
             return View("Add", aevm);
+        }
+
+        [NavStatusFilter]
+        private ActionResult CheckAnswer()
+        {
+
+            return View("");
+        }
+
+        /* Create by Dwayne 2015-12-4 15:04:29 */
+        [NavStatusFilter]
+        public ActionResult Test()
+        {
+            BaseViewModel bvm = new BaseViewModel();
+            bvm.SideBarData = new SideBarViewModel();
+            bvm.SideBarData.CurrentIndex = 1;
+
+            if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
+            {
+                bvm.NavStatusData = new NavStatusViewModel();
+                bvm.NavStatusData.LeftLink = "#";
+                bvm.NavStatusData.LeftText = Session["User"].ToString();
+                bvm.NavStatusData.RightLink = "/User/Logout";
+                bvm.NavStatusData.RightText = "Log out";
+            }
+
+            return View("Test", bvm);
         }
 
         /* Create by Mimikami 2015-13-3 14:50 */
@@ -231,6 +279,7 @@ namespace OnlineTeachingSystem.Controllers
             }
             catch(Exception ex)
             {
+                Response.Write(ex.ToString());
                 questionList = null;
             }
 

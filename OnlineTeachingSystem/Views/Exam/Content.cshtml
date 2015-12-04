@@ -1,3 +1,66 @@
 ﻿@using OnlineTeachingSystem.ViewModels
 @model ExamViewModel
-@{ViewBag.Title = @Model;}
+@{ViewBag.Title = @Model.Name;}
+
+<div class="row exam">
+    <div class="col-sm-12 col-md-8 blog-main">
+        <div class="article-header">
+            <h1 class="article-title">@Model.Name</h1>
+            <p class="article-description"></p>
+            <hr />
+        </div>
+        <form name="examForm" action="/Exam/CheckAnswer">
+            @for (int i = 0; i < @Model.QuestionNum; ++i)
+            {
+                <dl>
+                    <dt>@i. @Model.QuestionList[i].Problem</dt>
+                    <dd><img class="center-block" src="@Model.QuestionList[i].ImgSrc" /></dd>
+                    @if (Model.QuestionList[i].ProblemProperty == 0)
+                    {
+                        <dd class="radio-inline">
+                            <label>
+                                <input type="radio" name="examInfo[@i].userAnswer" id="P_A_@i" value="A" checked>
+                                @Model.QuestionList[i].First
+                            </label>
+                        </dd>
+                        <dd class="radio-inline">
+                            <label>
+                                <input type="radio" name="examInfo[@i].userAnswer" id="P_B_@i" value="B" checked>
+                                @Model.QuestionList[i].Second
+                            </label>
+                        </dd>
+                    }
+                    else
+                    {
+                        <dd class="radio">
+                            <label>
+                                <input type="radio" name="examInfo[@i].userAnswer" id="P_A_@i" value="A" checked>
+                                @Model.QuestionList[i].First
+                            </label>
+                        </dd>
+                        <dd class="radio">
+                            <label>
+                                <input type="radio" name="examInfo[@i].userAnswer" id="P_B_@i" value="B" checked>
+                                @Model.QuestionList[i].Second
+                            </label>
+                        </dd>
+                        <dd class="radio">
+                            <label>
+                                <input type="radio" name="examInfo[@i].userAnswer" id="P_C_@i" value="C" checked>
+                                @Model.QuestionList[i].Third
+                            </label>
+                        </dd>
+                        <dd class="radio">
+                            <label>
+                                <input type="radio" name="examInfo[@i].userAnswer" id="P_D_@i" value="D" checked>
+                                @Model.QuestionList[i].Fourth
+                            </label>
+                        </dd>
+                    }
+                </dl>
+            }
+            <button class="btn btn-lg btn-primary" type="submit">Submit</button>
+            <button class="btn btn-lg btn-warning" type="reset">Reset</button>
+        </form>
+    </div>
+</div>
