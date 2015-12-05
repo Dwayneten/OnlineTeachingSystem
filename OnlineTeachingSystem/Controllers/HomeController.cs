@@ -34,6 +34,7 @@ namespace OnlineTeachingSystem.Controllers
             base.OnActionExecuting(filterContext);
             Session["User"] = filterContext.HttpContext.Session["User"];
             Session["Mail"] = filterContext.HttpContext.Session["Mail"];
+            Session["Group"] = filterContext.HttpContext.Session["Group"];
         }
 
         [NavStatusFilter]

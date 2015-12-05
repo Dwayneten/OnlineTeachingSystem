@@ -50,13 +50,14 @@ namespace OnlineTeachingSystem.Controllers
             ExamListBusinessLayer examlistBusinessLayer = new ExamListBusinessLayer();
             List<ExamList> examList = examlistBusinessLayer.GetExamList();
 
-            int GradeID = Convert.ToInt32(Request.QueryString["Grade"]);
-            if (GradeID != 0)
+            int GradeId = Convert.ToInt32(HttpContext.Session["Group"]);
+           
+            if (GradeId != 0)
             {
                 ExamList ShowExamlist = new ExamList();
                 foreach (ExamList examlist in examList)
                 {
-                    if (examlist.Grade == GradeID)
+                    if (examlist.Grade == GradeId)
                     {
                         ShowExamlist.ExamName = examlist.ExamName;
                         ShowExamlist.Grade = examlist.Grade;
@@ -345,6 +346,7 @@ namespace OnlineTeachingSystem.Controllers
             base.OnActionExecuting(filterContext);
             Session["User"] = filterContext.HttpContext.Session["User"];
             Session["Mail"] = filterContext.HttpContext.Session["Mail"];
+            Session["Group"] = filterContext.HttpContext.Session["Group"];
         }
     }
 }
