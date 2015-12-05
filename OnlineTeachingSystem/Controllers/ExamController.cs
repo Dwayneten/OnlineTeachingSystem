@@ -297,6 +297,7 @@ namespace OnlineTeachingSystem.Controllers
                     Exam question = new Exam();
                     question.ExamName = filename;
                     question.Problem = (range.Cells[rCnt, 2] as Excel.Range).Value2.ToString();
+                    question.Score = (int)(range.Cells[rCnt, 8] as Excel.Range).Value2;
                     switch ((int)(range.Cells[rCnt, 1] as Excel.Range).Value2)
                     {
                         case 0:
