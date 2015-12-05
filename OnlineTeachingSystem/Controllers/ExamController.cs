@@ -55,6 +55,7 @@ namespace OnlineTeachingSystem.Controllers
             return View("", elvm);
         }
 
+        // 展示考试列表  Create by HuaFeng-Miki
         public ActionResult ExamList()
         {
 
@@ -62,6 +63,7 @@ namespace OnlineTeachingSystem.Controllers
             ExamListBusinessLayer examlistBusinessLayer = new ExamListBusinessLayer();
             List<ExamList> examList = examlistBusinessLayer.GetExamList();
 
+            // 查找该年级的考试科目  加到ExamList中  Create by HuaFeng-Miki
             int GroupId = Convert.ToInt32(HttpContext.Session["Group"]);
 
             if (GroupId != 0)
@@ -92,6 +94,7 @@ namespace OnlineTeachingSystem.Controllers
             return View("ExamList", examlistViewModel);
         }
 
+        // 存储每题答案、分数和题目总数 Create by HuaFeng-Miki
         private int[] Ans = new int[200];
         private int[] ProblemScore = new int[200];
         private int ProblemTotal;
@@ -106,6 +109,7 @@ namespace OnlineTeachingSystem.Controllers
             ExamBusinessLayer examBusinessLayer = new ExamBusinessLayer();
             List<Exam> exam = examBusinessLayer.GetExamList();
             ProblemTotal=0;
+            // 获取考试科目
             string examName = Convert.ToString(RouteData.Values["examName"]);
             if (examName != null)
             {
@@ -210,6 +214,7 @@ namespace OnlineTeachingSystem.Controllers
             return View("Add", aevm);
         }
 
+        // 检查提交结果和计算分数 Create by HuaFeng-Miki
         [NavStatusFilter]
         private ActionResult CheckAnswer()
         {
