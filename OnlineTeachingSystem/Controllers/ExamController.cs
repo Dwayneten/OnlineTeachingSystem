@@ -383,16 +383,18 @@ namespace OnlineTeachingSystem.Controllers
                 releaseObject(xlWorkSheet);
                 releaseObject(xlWorkBook);
                 releaseObject(xlApp);
-
+            }
+            catch(Exception ex)
+            {
+                //Response.Write(ex.ToString());
+                questionList = null;
+            }
+            finally
+            {
                 if (System.IO.File.Exists(filePath))
                 {
                     System.IO.File.Delete(filePath);
                 }
-            }
-            catch(Exception ex)
-            {
-                Response.Write(ex.ToString());
-                questionList = null;
             }
 
             return questionList;
