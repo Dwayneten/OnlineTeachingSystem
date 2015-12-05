@@ -19,5 +19,6 @@ namespace OnlineTeachingSystem.Models
         public string Fourth{ get;set; }
         public int Answer { get; set; }
         public string ImgSrc { get; set; }
+        public int Score { get; set; }
     }
 }

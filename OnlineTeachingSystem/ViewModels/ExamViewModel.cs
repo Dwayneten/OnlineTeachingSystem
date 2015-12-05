@@ -11,6 +11,7 @@ namespace OnlineTeachingSystem.ViewModels
         public string Name { set; get; }
         public List<Exam> QuestionList { set; get; }
         public int QuestionNum { get; set; }
+        public int ExamScore { get; set; }
 
     }
 }

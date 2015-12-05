@@ -50,20 +50,18 @@ namespace OnlineTeachingSystem.Controllers
             ExamListBusinessLayer examlistBusinessLayer = new ExamListBusinessLayer();
             List<ExamList> examList = examlistBusinessLayer.GetExamList();
 
-            int GradeId = Convert.ToInt32(HttpContext.Session["Group"]);
-           
-            if (GradeId != 0)
+            int GradeID = Convert.ToInt32(Request.QueryString["Grade"]);
+            if (GradeID != 0)
             {
                 ExamList ShowExamlist = new ExamList();
                 foreach (ExamList examlist in examList)
                 {
-                    if (examlist.Grade == GradeId)
+                    if (examlist.Grade == GradeID)
                     {
                         ShowExamlist.ExamName = examlist.ExamName;
                         ShowExamlist.Grade = examlist.Grade;
                         ShowExamlist.StartTime = examlist.StartTime;
                         ShowExamlist.Duration = examlist.Duration;
-
                         examlistViewModel.ExamList.Add(ShowExamlist);
                     }
                 }
@@ -80,6 +78,10 @@ namespace OnlineTeachingSystem.Controllers
 
             return View("ExamList", examlistViewModel);
         }
+
+        private int[] Ans = new int[200];
+        private int[] ProblemScore = new int[200];
+        private int ProblemTotal;
         /* show exam */ 
         public ActionResult ShowExam()
         {
@@ -87,6 +89,7 @@ namespace OnlineTeachingSystem.Controllers
             ExamBusinessLayer examBusinessLayer = new ExamBusinessLayer();
             List<Exam> exam = examBusinessLayer.GetExamList();
 
+            ProblemTotal=0;
             string examName = Convert.ToString(Request.QueryString["ExamName"]);
             if (examName != null)
             {
@@ -101,6 +104,11 @@ namespace OnlineTeachingSystem.Controllers
                         userexam.ProblemProperty = t.ProblemProperty;
                         userexam.Answer = t.Answer;
                         userexam.ImgSrc = t.ImgSrc;
+                        userexam.Score = t.Score;
+
+                        Ans[ProblemTotal] = t.Answer;
+                        ProblemScore[ProblemTotal++] = t.Score; 
+
                         // single-choice question
                         if (userexam.ProblemProperty == 1)
                         {
@@ -189,8 +197,17 @@ namespace OnlineTeachingSystem.Controllers
         [NavStatusFilter]
         private ActionResult CheckAnswer()
         {
+            ExamViewModel examViewModel = new ExamViewModel();
+            int TotalScore = 0;
 
-            return View("");
+            
+            for (int i = 0; i < ProblemTotal;i++)
+            {
+                if (Request.Form["examInfo[i].userAnswer"].ToString()[0] - 'A' == Ans[i])
+                    TotalScore += ProblemScore[i];
+            }
+            examViewModel.ExamScore=TotalScore;
+            return View("Content", examViewModel);
         }
 
         /* Create by Dwayne 2015-12-4 15:04:29 */
@@ -346,7 +363,7 @@ namespace OnlineTeachingSystem.Controllers
             base.OnActionExecuting(filterContext);
             Session["User"] = filterContext.HttpContext.Session["User"];
             Session["Mail"] = filterContext.HttpContext.Session["Mail"];
-            Session["Group"] = filterContext.HttpContext.Session["Group"];
+            
         }
     }
 }
