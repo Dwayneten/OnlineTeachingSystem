@@ -31,7 +31,26 @@ namespace OnlineTeachingSystem.Controllers
             elvm.PageNum = pageNum;
             elvm.ExamNum = elvm.ExamList.Count;
             elvm.TotalNum = examList.Count;
-            
+
+            // 查找该年级的考试科目  加到ExamList中  Create by HuaFeng-Miki
+            int GroupId = Convert.ToInt32(HttpContext.Session["Group"]);
+
+            if (GroupId != 0)
+            {
+                foreach (ExamList examlist in examList)
+                {
+                    if (examlist.Group == GroupId)
+                    {
+                        ExamList ShowExamlist = new ExamList();
+                        ShowExamlist.ExamName = examlist.ExamName;
+                        ShowExamlist.Group = examlist.Group;
+                        ShowExamlist.StartTime = examlist.StartTime;
+                        ShowExamlist.Duration = examlist.Duration;
+                        elvm.ExamList.Add(ShowExamlist);
+                    }
+                }
+            }
+
             // Add default exam
             // Dwayne 2015-12-5 09:33:13
             if (elvm.ExamNum == 0)
