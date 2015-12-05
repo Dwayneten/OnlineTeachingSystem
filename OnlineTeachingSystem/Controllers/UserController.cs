@@ -65,6 +65,7 @@ namespace OnlineTeachingSystem.Controllers
             userInfo.NickName = Request.Form["NickName"];
             userInfo.Mail = UniqueEmail(Request.Form["Mail"]);
             userInfo.Password = Request.Form["Password"];
+            userInfo.Grade = 1;
 
             bool SignUpFlag = true;
 
@@ -210,8 +211,10 @@ namespace OnlineTeachingSystem.Controllers
             foreach (UserInfo ui in userInfoList)
             {
                 if (ui.Mail == userInfo.Mail)
-                {  
-                    userInfoBusinessLayer.Remove(ui);
+                {
+                    userInfo.Grade = ui.Grade;
+                    userInfo.NickName = ui.NickName;
+                    userInfoBusinessLayer.Del(ui);
                     break;
                 }
             }
