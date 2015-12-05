@@ -211,6 +211,8 @@ namespace OnlineTeachingSystem.Controllers
         private ActionResult CheckAnswer()
         {
             ExamViewModel examViewModel = new ExamViewModel();
+            examViewModel.SideBarData = new SideBarViewModel();
+            examViewModel.SideBarData.CurrentIndex = 2;
             int TotalScore = 0;
 
             
@@ -220,6 +222,16 @@ namespace OnlineTeachingSystem.Controllers
                     TotalScore += ProblemScore[i];
             }
             examViewModel.ExamScore=TotalScore;
+
+            if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
+            {
+                examViewModel.NavStatusData = new NavStatusViewModel();
+                examViewModel.NavStatusData.LeftLink = "/User/Profile/" + HttpContext.Session["User"].ToString();
+                examViewModel.NavStatusData.LeftText = Session["User"].ToString();
+                examViewModel.NavStatusData.RightLink = "/User/Logout";
+                examViewModel.NavStatusData.RightText = "Log out";
+            }
+
             return View("Content", examViewModel);
         }
 
