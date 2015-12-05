@@ -9,6 +9,7 @@ namespace OnlineTeachingSystem.Models
 {
     public class UserInfoBusinessLayer
     {
+        /* Create by Zhang Cong */
         public UserInfo SignUp(UserInfo userInfo)
         {
             OTSDBDAL otsdbDAL = new OTSDBDAL();

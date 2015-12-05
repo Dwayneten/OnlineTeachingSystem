@@ -56,6 +56,7 @@ namespace OnlineTeachingSystem.Controllers
             return unqname;
         }
 
+        /* Create by Zhang Cong */
         [NavStatusFilter]
         public ActionResult TrySignUp()
         {
@@ -202,7 +203,7 @@ namespace OnlineTeachingSystem.Controllers
 
             return View("Profile", pvm);
         }
-
+        /* Create by Zhang Cong */
         public ActionResult UserInfoUpdate()
         {
             UserInfoBusinessLayer userInfoBusinessLayer = new UserInfoBusinessLayer();
