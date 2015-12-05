@@ -113,11 +113,8 @@ namespace OnlineTeachingSystem.Controllers
             return View("ExamList", examlistViewModel);
         }
 
-        // 存储每题答案、分数和题目总数 Create by HuaFeng-Miki
-        private int[] Ans = new int[200];
-        private int[] ProblemScore = new int[200];
-        private int ProblemTotal;
         /* show exam */ 
+        [NavStatusFilter]
         public ActionResult ShowExam()
         {
             ExamViewModel examViewModel = new ExamViewModel();
@@ -127,7 +124,6 @@ namespace OnlineTeachingSystem.Controllers
 
             ExamBusinessLayer examBusinessLayer = new ExamBusinessLayer();
             List<Exam> exam = examBusinessLayer.GetExamList();
-            ProblemTotal=0;
             // 获取考试科目
             string examName = Convert.ToString(RouteData.Values["examName"]);
             if (examName != null)
@@ -144,10 +140,6 @@ namespace OnlineTeachingSystem.Controllers
                         userexam.Answer = t.Answer;
                         userexam.ImgSrc = t.ImgSrc;
                         userexam.Score = t.Score;
-
-                        Ans[ProblemTotal] = t.Answer;
-                        ProblemScore[ProblemTotal++] = t.Score; 
-
                         // single-choice question
                         if (userexam.ProblemProperty == 1)
                         {
@@ -168,6 +160,7 @@ namespace OnlineTeachingSystem.Controllers
 
             examViewModel.QuestionNum = examViewModel.QuestionList.Count;
             examViewModel.Name = examName;
+            examViewModel.ExamScore = -1;
 
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
@@ -247,14 +240,44 @@ namespace OnlineTeachingSystem.Controllers
             ExamViewModel examViewModel = new ExamViewModel();
             examViewModel.SideBarData = new SideBarViewModel();
             examViewModel.SideBarData.CurrentIndex = 2;
-            int TotalScore = 0;
+            int ProblemTotal = 0;
+            int[] Ans = new int[200];
+            int[] ProblemScore = new int[200];
 
-            
+           //  string examname=RouteData.Values["examName"].ToString();
+            ExamBusinessLayer examBusinessLayer = new ExamBusinessLayer();
+            List<Exam> exam = examBusinessLayer.GetExamList();
+            // 获取考试题目分数和答案
+
+            string examName = Request.Form["examName"].ToString();
+            if (examName != null)
+            {
+                foreach (Exam t in exam)
+                {
+                    if (t.ExamName == examName)
+                    {
+                        Exam userexam = new Exam();
+                        Ans[ProblemTotal] = t.Answer;
+                        ProblemScore[ProblemTotal] = t.Score;
+                        ProblemTotal++;
+                    }
+                }
+            }
+
+            int TotalScore = -1;
+            int cnt = 0;
             for (int i = 0; i < ProblemTotal;i++)
             {
-                if (Request.Form["examInfo[i].userAnswer"].ToString()[0] - 'A' == Ans[i])
+                if (Request.Form["examInfo[" + i + "].userAnswer"] == null)
+                {
+                    cnt++;
+                    continue;
+                }
+                if (Request.Form["examInfo[" + i + "].userAnswer"].ToString()[0] - 'A'+1 == Ans[i])
                     TotalScore += ProblemScore[i];
             }
+            if (cnt == ProblemTotal)
+                TotalScore = 65535;
             examViewModel.ExamScore = TotalScore;
 
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")

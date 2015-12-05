@@ -20,13 +20,13 @@
                         <dd class="radio-inline">
                             <label>
                                 <input type="radio" name="examInfo[@i].userAnswer" id="P_A_@i" value="A">
-                                @Model.QuestionList[i].First
+                                Yes
                             </label>
                         </dd>
                         <dd class="radio-inline">
                             <label>
                                 <input type="radio" name="examInfo[@i].userAnswer" id="P_B_@i" value="B">
-                                @Model.QuestionList[i].Second
+                                No
                             </label>
                         </dd>
                     }
@@ -34,37 +34,46 @@
                     {
                         <dd class="radio">
                             <label>
-                                <input type="radio" name="examInfo[@i].userAnswer" id="P_A_@i" value="A" checked>
+                                <input type="radio" name="examInfo[@i].userAnswer" id="P_A_@i" value="A" >
                                 @Model.QuestionList[i].First
                             </label>
                         </dd>
                         <dd class="radio">
                             <label>
-                                <input type="radio" name="examInfo[@i].userAnswer" id="P_B_@i" value="B" checked>
+                                <input type="radio" name="examInfo[@i].userAnswer" id="P_B_@i" value="B" >
                                 @Model.QuestionList[i].Second
                             </label>
                         </dd>
                         <dd class="radio">
                             <label>
-                                <input type="radio" name="examInfo[@i].userAnswer" id="P_C_@i" value="C" checked>
+                                <input type="radio" name="examInfo[@i].userAnswer" id="P_C_@i" value="C" >
                                 @Model.QuestionList[i].Third
                             </label>
                         </dd>
                         <dd class="radio">
                             <label>
-                                <input type="radio" name="examInfo[@i].userAnswer" id="P_D_@i" value="D" checked>
+                                <input type="radio" name="examInfo[@i].userAnswer" id="P_D_@i" value="D" >
                                 @Model.QuestionList[i].Fourth
                             </label>
                         </dd>
                     }
                 </dl>
             }
-            @if (@Model.ExamScore != null)
+            @if (@Model.ExamScore >= 0)
             {
-                <div id="ots-alert" class="alert add-exam-alert alert-info">你的分数为: @Model.ExamScore 分</div>
+                <div id="ots-alert" class="alert add-exam-alert alert-info">你的分数为: @(Model.ExamScore + (Model.ExamScore == 65535 ? -65535 : 1)) 分</div>
             }
-            <button class="btn btn-lg btn-primary" type="submit">Submit</button>
-            <button class="btn btn-lg btn-warning" type="reset">Reset</button>
+            else
+            { 
+                <input type="text" name="examName" id="examName" style="display: none;"/>
+                <button class="btn btn-lg btn-primary" type="submit">Submit</button>
+                <button class="btn btn-lg btn-warning" type="reset">Reset</button>
+                <script>
+                    var t = $('.exam-title')[0];
+                    $('#examName')[0].value = t.innerHTML;
+                </script>
+            }
+            
         </form>
     </div>
 </div>
