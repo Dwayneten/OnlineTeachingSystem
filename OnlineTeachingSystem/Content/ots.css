@@ -11,6 +11,12 @@ body {
   padding-top: 50px;
 }
 
+/** Adjust mobile device */
+.jumbotron {
+    border-radius: 6px;
+    padding-left: 30px;
+    padding-right: 10px;
+}
 
 /*
  * Global add-ons
@@ -55,6 +61,7 @@ body {
   text-align: center;
   background-color: #f5f5f5;
   border-bottom: 1px solid #eee;
+  padding-top: 2px;
 }
 @media (min-width: 768px) {
   .sidebar {
