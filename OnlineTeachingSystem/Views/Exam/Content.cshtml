@@ -9,7 +9,7 @@
             <p class="exam-description"></p>
             <hr />
         </div>
-        <form name="examForm" action="/Exam/CheckAnswer">
+        <form name="examForm" action="/Exam/CheckAnswer" method="post">
             @for (int i = 0; i < @Model.QuestionNum; ++i)
             {
                 <dl>
@@ -61,7 +61,7 @@
             }
             @if (@Model.ExamScore != null)
             {
-                <div id="ots-alert" class="alert add-exam-alert alert-info">@Model.ExamScore</div>
+                <div id="ots-alert" class="alert add-exam-alert alert-info">你的分数为: @Model.ExamScore 分</div>
             }
             <button class="btn btn-lg btn-primary" type="submit">Submit</button>
             <button class="btn btn-lg btn-warning" type="reset">Reset</button>

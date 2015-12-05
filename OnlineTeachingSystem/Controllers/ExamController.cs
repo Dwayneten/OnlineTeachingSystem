@@ -242,7 +242,7 @@ namespace OnlineTeachingSystem.Controllers
 
         // 检查提交结果和计算分数 Create by HuaFeng-Miki
         [NavStatusFilter]
-        private ActionResult CheckAnswer()
+        public ActionResult CheckAnswer()
         {
             ExamViewModel examViewModel = new ExamViewModel();
             examViewModel.SideBarData = new SideBarViewModel();
@@ -255,7 +255,7 @@ namespace OnlineTeachingSystem.Controllers
                 if (Request.Form["examInfo[i].userAnswer"].ToString()[0] - 'A' == Ans[i])
                     TotalScore += ProblemScore[i];
             }
-            examViewModel.ExamScore=TotalScore;
+            examViewModel.ExamScore = TotalScore;
 
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
