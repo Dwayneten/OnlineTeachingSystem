@@ -189,7 +189,8 @@ namespace OnlineTeachingSystem.Controllers
             aevm.SideBarData = new SideBarViewModel();
             aevm.SideBarData.CurrentIndex = 2;
             ExamBusinessLayer EBL = new ExamBusinessLayer();
-            ExamBusinessLayer list = new ExamBusinessLayer();
+            ExamListBusinessLayer list = new ExamListBusinessLayer();
+            ExamList AddToExamLit = new ExamList();
             /* Business code here. */
             if (HttpContext.Session["Mail"].ToString()=="admin@ots.com")
             {
@@ -202,8 +203,12 @@ namespace OnlineTeachingSystem.Controllers
                     if (examList != null)
                     {
                         EBL.AddExam(examList);
+                        AddToExamLit.Duration = 60;
+                        AddToExamLit.Group = 1;
+                        AddToExamLit.ExamName = examList[0].ExamName.Split('\0')[0];
 
-                        list.AddExam(examList);
+                        AddToExamLit.StartTime = DateTime.Now;
+                        list.AddExamlist(AddToExamLit);
                         /* if success then */
                         aevm.Message = "Add Exam successfully!";
                         aevm.AlertType = "success";
@@ -294,6 +299,7 @@ namespace OnlineTeachingSystem.Controllers
 
             /* Delete the suffix */
             char[] temp = examFile.FileName.ToCharArray(0, examFile.FileName.Length);
+
             int i = 0;
             for(i=temp.Length-1;i>=0;i--) {
                 if(temp[i]=='.') {
@@ -303,6 +309,7 @@ namespace OnlineTeachingSystem.Controllers
             }
 
             string filename = new string(temp);
+            filename = filename.Split('\0')[0];
             examFile.SaveAs(filePath);
             List<Exam> questionList = new List<Exam>();
 
