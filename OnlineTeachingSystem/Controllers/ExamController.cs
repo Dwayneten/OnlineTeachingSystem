@@ -39,7 +39,7 @@ namespace OnlineTeachingSystem.Controllers
                 ExamList exam = new ExamList();
                 exam.ExamName = "Test";
                 exam.StartTime = DateTime.Now;
-                exam.Grade = 1;
+                exam.Group = 1;
                 elvm.ExamList.Add(exam);
                 elvm.ExamNum = elvm.TotalNum = 1;
             }
@@ -62,16 +62,17 @@ namespace OnlineTeachingSystem.Controllers
             ExamListBusinessLayer examlistBusinessLayer = new ExamListBusinessLayer();
             List<ExamList> examList = examlistBusinessLayer.GetExamList();
 
-            int GradeID = Convert.ToInt32(Request.QueryString["Grade"]);
-            if (GradeID != 0)
+            int GroupId = Convert.ToInt32(HttpContext.Session["Group"]);
+
+            if (GroupId != 0)
             {
                 ExamList ShowExamlist = new ExamList();
                 foreach (ExamList examlist in examList)
                 {
-                    if (examlist.Grade == GradeID)
+                    if (examlist.Group == GroupId)
                     {
                         ShowExamlist.ExamName = examlist.ExamName;
-                        ShowExamlist.Grade = examlist.Grade;
+                        ShowExamlist.Group = examlist.Group;
                         ShowExamlist.StartTime = examlist.StartTime;
                         ShowExamlist.Duration = examlist.Duration;
                         examlistViewModel.ExamList.Add(ShowExamlist);
@@ -375,7 +376,7 @@ namespace OnlineTeachingSystem.Controllers
             base.OnActionExecuting(filterContext);
             Session["User"] = filterContext.HttpContext.Session["User"];
             Session["Mail"] = filterContext.HttpContext.Session["Mail"];
-            
+            Session["Group"] = filterContext.HttpContext.Session["Group"];
         }
     }
 }

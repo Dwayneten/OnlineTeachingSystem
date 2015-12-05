@@ -10,7 +10,7 @@ namespace OnlineTeachingSystem.Models
     {
         [Key]
         public string ExamName { get; set; }
-        public int Grade { get; set; }
+        public int Group { get; set; }
         public DateTime StartTime { get; set; }
         public int Duration { get; set; }
     }
