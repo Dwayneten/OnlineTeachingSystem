@@ -43,6 +43,7 @@ namespace OnlineTeachingSystem.Controllers
             return View("", alvm);
         }
 
+        /* Code by Dwayne */
         [NavStatusFilter]
         public ActionResult Test()
         {
@@ -107,6 +108,7 @@ namespace OnlineTeachingSystem.Controllers
                 }
             }
 
+            /* Code by Dwayne */
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
                 articleViewModel.NavStatusData = new NavStatusViewModel();
@@ -184,6 +186,9 @@ namespace OnlineTeachingSystem.Controllers
             return View("Add", aavm);
         }
 
+        /* Create by Mimikami
+         * Edit by Dwayne 
+         */
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
