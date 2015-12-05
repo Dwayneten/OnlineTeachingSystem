@@ -189,7 +189,7 @@ namespace OnlineTeachingSystem.Controllers
             aevm.SideBarData = new SideBarViewModel();
             aevm.SideBarData.CurrentIndex = 2;
             ExamBusinessLayer EBL = new ExamBusinessLayer();
-
+            ExamBusinessLayer list = new ExamBusinessLayer();
             /* Business code here. */
             if (HttpContext.Session["Mail"].ToString()=="admin@ots.com")
             {
@@ -203,6 +203,7 @@ namespace OnlineTeachingSystem.Controllers
                     {
                         EBL.AddExam(examList);
 
+                        list.AddExam(examList);
                         /* if success then */
                         aevm.Message = "Add Exam successfully!";
                         aevm.AlertType = "success";
@@ -214,6 +215,7 @@ namespace OnlineTeachingSystem.Controllers
                         aevm.AlertType = "danger";
                     }
                 }
+
             }
             else
             {

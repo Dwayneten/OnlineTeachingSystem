@@ -59,7 +59,6 @@ namespace OnlineTeachingSystem.Controllers
                 bvm.NavStatusData.RightLink = "/User/Logout";
                 bvm.NavStatusData.RightText = "Log out";
             }
-
             return View("Test", bvm);
         }
 

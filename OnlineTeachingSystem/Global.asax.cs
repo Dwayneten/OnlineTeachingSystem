@@ -31,6 +31,7 @@ namespace OnlineTeachingSystem
             userInfo.NickName = "Admin";
             userInfo.Mail = "admin@ots.com";
             userInfo.Password = "otsadmin";
+            userInfo.Grade = 1;
             userInfoBusinessLayer.SignUp(userInfo);
 
             ArticleBusinessLayer articleBusinessLayer = new ArticleBusinessLayer();
@@ -39,15 +40,13 @@ namespace OnlineTeachingSystem
             String TEMP;
             Markdown m = new Markdown();
             
-            for(int i = 0;i<3;i++)
-            {
                 StreamReader SR1 = new StreamReader(Server.MapPath("./testArticle/Markdown_Documentation_Basics.text"));
                 StreamReader SR2 = new StreamReader(Server.MapPath("./testArticle/Markdown_Documentation_Syntax.text"));
                 StreamReader SR3 = new StreamReader(Server.MapPath("./testArticle/markdown-readme.text"));
 
                 article.Author = "TestTest";
                 article.CreateDate = DateTime.Now;
-                article.Title = "Test" + (1 + i).ToString();
+                article.Title = "Test" + (1).ToString();
 
                 TEMP = SR1.ReadToEnd();
                 article.Content = m.Transform(TEMP);
@@ -60,7 +59,7 @@ namespace OnlineTeachingSystem
 
                 article.Author = "TestTest";
                 article.CreateDate = DateTime.Now;
-                article.Title = "Test" + (2 + i).ToString();
+                article.Title = "Test" + (2).ToString();
 
                 TEMP = SR2.ReadToEnd();
                 article.Content = m.Transform(TEMP);
@@ -73,7 +72,7 @@ namespace OnlineTeachingSystem
 
                 article.Author = "TestTest";
                 article.CreateDate = DateTime.Now;
-                article.Title = "Test" + (3 + i).ToString();
+                article.Title = "Test" + (3).ToString();
 
                 TEMP = SR3.ReadToEnd();
                 article.Content = m.Transform(TEMP);
@@ -87,7 +86,6 @@ namespace OnlineTeachingSystem
                 SR1.Close();
                 SR2.Close();
                 SR3.Close();
-            }
         }
     }
 }
