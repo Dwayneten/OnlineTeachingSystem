@@ -40,6 +40,7 @@ namespace OnlineTeachingSystem.Controllers
             base.OnActionExecuting(aec);
             Session["User"] = aec.HttpContext.Session["User"];
             Session["Mail"] = aec.HttpContext.Session["Mail"];
+            Session["Group"] = aec.HttpContext.Session["Group"];
         }
 
         /* Convert email address to lower case. Code by Dwayne */
@@ -92,7 +93,8 @@ namespace OnlineTeachingSystem.Controllers
                 signUpViewModel.AlertType = "success";
                 HttpContext.Session["User"]= userInfo.NickName;
                 HttpContext.Session["Mail"] = userInfo.Mail;
-                
+                HttpContext.Session["Group"] = 1;
+
                 return View("SignUp", signUpViewModel);
             }
             else
@@ -150,6 +152,7 @@ namespace OnlineTeachingSystem.Controllers
                 signUpViewModel.NavStatusData.Message = "Login successfully!";
                 HttpContext.Session["Mail"] = userInfo.Mail;
                 HttpContext.Session["User"] = userInfo.NickName;
+                HttpContext.Session["Group"] = 1;
 
                 Response.Redirect("~");
                 return View("Index", signUpViewModel);

@@ -9,7 +9,14 @@
             <div class="article-list-group">
                 <p class="article-list-title">@Model.ExamList[i].ExamName</p>
                 <p class="article-list-description">@Model.ExamList[i].StartTime</p>
-                <a class="btn btn-default article-list-btn" href="/Exam/content/@Model.ExamList[i].ExamName">Take it »</a>
+                @if (Model.ExamList[i].ExamName == "Test")
+                {
+                    <a class="btn btn-default article-list-btn" href="Exam/Test">Take it »</a>
+                }
+                else
+                {
+                    <a class="btn btn-default article-list-btn" href="Exam/content/@Model.ExamList[i].ExamName">Take it »</a>
+                }
                 <hr>
             </div>
         }

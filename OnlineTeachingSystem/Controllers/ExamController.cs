@@ -31,6 +31,18 @@ namespace OnlineTeachingSystem.Controllers
             elvm.PageNum = pageNum;
             elvm.ExamNum = elvm.ExamList.Count;
             elvm.TotalNum = examList.Count;
+            
+            // Add default exam
+            // Dwayne 2015-12-5 09:33:13
+            if (elvm.ExamNum == 0)
+            {
+                ExamList exam = new ExamList();
+                exam.ExamName = "Test";
+                exam.StartTime = DateTime.Now;
+                exam.Group = 1;
+                elvm.ExamList.Add(exam);
+                elvm.ExamNum = elvm.TotalNum = 1;
+            }
 
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
@@ -50,19 +62,19 @@ namespace OnlineTeachingSystem.Controllers
             ExamListBusinessLayer examlistBusinessLayer = new ExamListBusinessLayer();
             List<ExamList> examList = examlistBusinessLayer.GetExamList();
 
-            int GradeID = Convert.ToInt32(Request.QueryString["Grade"]);
-            if (GradeID != 0)
+            int GroupId = Convert.ToInt32(HttpContext.Session["Group"]);
+
+            if (GroupId != 0)
             {
                 ExamList ShowExamlist = new ExamList();
                 foreach (ExamList examlist in examList)
                 {
-                    if (examlist.Grade == GradeID)
+                    if (examlist.Group == GroupId)
                     {
                         ShowExamlist.ExamName = examlist.ExamName;
-                        ShowExamlist.Grade = examlist.Grade;
+                        ShowExamlist.Group = examlist.Group;
                         ShowExamlist.StartTime = examlist.StartTime;
                         ShowExamlist.Duration = examlist.Duration;
-
                         examlistViewModel.ExamList.Add(ShowExamlist);
                     }
                 }
@@ -79,6 +91,10 @@ namespace OnlineTeachingSystem.Controllers
 
             return View("ExamList", examlistViewModel);
         }
+
+        private int[] Ans = new int[200];
+        private int[] ProblemScore = new int[200];
+        private int ProblemTotal;
         /* show exam */ 
         public ActionResult ShowExam()
         {
@@ -86,6 +102,7 @@ namespace OnlineTeachingSystem.Controllers
             ExamBusinessLayer examBusinessLayer = new ExamBusinessLayer();
             List<Exam> exam = examBusinessLayer.GetExamList();
 
+            ProblemTotal=0;
             string examName = Convert.ToString(Request.QueryString["ExamName"]);
             if (examName != null)
             {
@@ -100,6 +117,11 @@ namespace OnlineTeachingSystem.Controllers
                         userexam.ProblemProperty = t.ProblemProperty;
                         userexam.Answer = t.Answer;
                         userexam.ImgSrc = t.ImgSrc;
+                        userexam.Score = t.Score;
+
+                        Ans[ProblemTotal] = t.Answer;
+                        ProblemScore[ProblemTotal++] = t.Score; 
+
                         // single-choice question
                         if (userexam.ProblemProperty == 1)
                         {
@@ -188,8 +210,17 @@ namespace OnlineTeachingSystem.Controllers
         [NavStatusFilter]
         private ActionResult CheckAnswer()
         {
+            ExamViewModel examViewModel = new ExamViewModel();
+            int TotalScore = 0;
 
-            return View("");
+            
+            for (int i = 0; i < ProblemTotal;i++)
+            {
+                if (Request.Form["examInfo[i].userAnswer"].ToString()[0] - 'A' == Ans[i])
+                    TotalScore += ProblemScore[i];
+            }
+            examViewModel.ExamScore=TotalScore;
+            return View("Content", examViewModel);
         }
 
         /* Create by Dwayne 2015-12-4 15:04:29 */
@@ -345,6 +376,7 @@ namespace OnlineTeachingSystem.Controllers
             base.OnActionExecuting(filterContext);
             Session["User"] = filterContext.HttpContext.Session["User"];
             Session["Mail"] = filterContext.HttpContext.Session["Mail"];
+            Session["Group"] = filterContext.HttpContext.Session["Group"];
         }
     }
 }
