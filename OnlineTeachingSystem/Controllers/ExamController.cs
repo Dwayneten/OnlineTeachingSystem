@@ -31,6 +31,18 @@ namespace OnlineTeachingSystem.Controllers
             elvm.PageNum = pageNum;
             elvm.ExamNum = elvm.ExamList.Count;
             elvm.TotalNum = examList.Count;
+            
+            // Add default exam
+            // Dwayne 2015-12-5 09:33:13
+            if (elvm.ExamNum == 0)
+            {
+                ExamList exam = new ExamList();
+                exam.ExamName = "Test";
+                exam.StartTime = DateTime.Now;
+                exam.Grade = 1;
+                elvm.ExamList.Add(exam);
+                elvm.ExamNum = elvm.TotalNum = 1;
+            }
 
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
