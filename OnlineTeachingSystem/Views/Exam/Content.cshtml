@@ -59,6 +59,10 @@
                     }
                 </dl>
             }
+            @if (@Model.ExamScore != null)
+            {
+                <div id="ots-alert" class="alert add-exam-alert alert-info">@Model.ExamScore</div>
+            }
             <button class="btn btn-lg btn-primary" type="submit">Submit</button>
             <button class="btn btn-lg btn-warning" type="reset">Reset</button>
         </form>
