@@ -66,11 +66,11 @@ namespace OnlineTeachingSystem.Controllers
 
             if (GroupId != 0)
             {
-                ExamList ShowExamlist = new ExamList();
                 foreach (ExamList examlist in examList)
                 {
                     if (examlist.Group == GroupId)
                     {
+                        ExamList ShowExamlist = new ExamList();
                         ShowExamlist.ExamName = examlist.ExamName;
                         ShowExamlist.Group = examlist.Group;
                         ShowExamlist.StartTime = examlist.StartTime;
@@ -109,11 +109,11 @@ namespace OnlineTeachingSystem.Controllers
             string examName = Convert.ToString(RouteData.Values["examName"]);
             if (examName != null)
             {
-                Exam userexam = new Exam();
                 foreach (Exam t in exam)
                 {
                     if (t.ExamName == examName)
                     {
+                        Exam userexam = new Exam();
                         userexam.ExamID = t.ExamID;
                         userexam.ExamName = t.ExamName;
                         userexam.Problem = t.Problem;

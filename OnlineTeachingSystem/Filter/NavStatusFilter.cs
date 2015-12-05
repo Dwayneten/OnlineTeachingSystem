@@ -19,7 +19,7 @@ namespace OnlineTeachingSystem.Filter
                 {
                     if (bvm.NavStatusData == null)
                     {
-                        bvm.NavStatusData = new NavStatusViewModel();
+                        bvm.NavStatusData = new NavStatusViewModel(); 
                         bvm.NavStatusData.LeftText = "Log in";
                         bvm.NavStatusData.LeftLink = "/User/LogIn";
                         bvm.NavStatusData.RightText = "Sign up";
