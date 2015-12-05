@@ -99,11 +99,14 @@ namespace OnlineTeachingSystem.Controllers
         public ActionResult ShowExam()
         {
             ExamViewModel examViewModel = new ExamViewModel();
+            examViewModel.QuestionList = new List<Exam>();
+            examViewModel.SideBarData = new SideBarViewModel();
+            examViewModel.SideBarData.CurrentIndex = 2;
+
             ExamBusinessLayer examBusinessLayer = new ExamBusinessLayer();
             List<Exam> exam = examBusinessLayer.GetExamList();
-
             ProblemTotal=0;
-            string examName = Convert.ToString(Request.QueryString["ExamName"]);
+            string examName = Convert.ToString(RouteData.Values["examName"]);
             if (examName != null)
             {
                 Exam userexam = new Exam();
@@ -152,7 +155,7 @@ namespace OnlineTeachingSystem.Controllers
                 examViewModel.NavStatusData.RightText = "Log out";
             }
 
-            return View("StartExam", examViewModel);
+            return View("Content", examViewModel);
         }
 
         /* Create by Dwayne */

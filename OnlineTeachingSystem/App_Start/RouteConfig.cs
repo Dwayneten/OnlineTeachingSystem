@@ -41,7 +41,7 @@ namespace OnlineTeachingSystem
 
             routes.MapRoute(
                 name: "Exam",
-                url: "exam/content/{articleId}",
+                url: "exam/content/{examName}",
                 defaults: new { controller = "exam", action = "ShowExam" }
             );
 

@@ -13,19 +13,19 @@
             @for (int i = 0; i < @Model.QuestionNum; ++i)
             {
                 <dl>
-                    <dt>@i. @Model.QuestionList[i].Problem</dt>
+                    <dt>@(i+1). @Model.QuestionList[i].Problem</dt>
                     <dd><img class="center-block" src="@Model.QuestionList[i].ImgSrc" /></dd>
                     @if (Model.QuestionList[i].ProblemProperty == 0)
                     {
                         <dd class="radio-inline">
                             <label>
-                                <input type="radio" name="examInfo[@i].userAnswer" id="P_A_@i" value="A" checked>
+                                <input type="radio" name="examInfo[@i].userAnswer" id="P_A_@i" value="A">
                                 @Model.QuestionList[i].First
                             </label>
                         </dd>
                         <dd class="radio-inline">
                             <label>
-                                <input type="radio" name="examInfo[@i].userAnswer" id="P_B_@i" value="B" checked>
+                                <input type="radio" name="examInfo[@i].userAnswer" id="P_B_@i" value="B">
                                 @Model.QuestionList[i].Second
                             </label>
                         </dd>
