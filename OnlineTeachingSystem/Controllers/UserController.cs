@@ -176,7 +176,7 @@ namespace OnlineTeachingSystem.Controllers
             if (HttpContext.Session["User"] != null && Session["User"].ToString() != "")
             {
                 pvm.NavStatusData = new NavStatusViewModel();
-                pvm.NavStatusData.LeftLink = "/User/Profile/" + Session["Mail"].ToString();
+                pvm.NavStatusData.LeftLink = "/User/Profile/" + Session["User"].ToString();
                 pvm.NavStatusData.LeftText = Session["User"].ToString();
                 pvm.NavStatusData.RightLink = "/User/Logout";
                 pvm.NavStatusData.RightText = "Log out";

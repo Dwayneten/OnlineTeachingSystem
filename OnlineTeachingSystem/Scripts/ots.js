@@ -70,6 +70,20 @@ function addLoginAttr() {
     if ($('#nav-left')[0].innerText == "Log in") {
         $('#nav-left').attr("data-toggle", "modal");
         $('#nav-left').attr("data-target", "#loginModal");
+    } else {
+        var avatar = new mdAvatar({
+            size: 40,
+            text: $('#nav-left')[0].innerHTML.toUpperCase()[0],
+            textBaseline: "middle",
+            fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif"
+        });
+        $(avatar).addClass('user-icon');
+        avatar.onclick = function(){
+            $('#nav-left')[0].click();
+        };
+        $('.navbar-right').prepend(document.createElement('li'));
+        $('.navbar-right')[0].children[0].appendChild(avatar);
+        // $(avatar).insertBefore($('#nav-li-left')[0]);
     }
 }
 function checkLogin() {

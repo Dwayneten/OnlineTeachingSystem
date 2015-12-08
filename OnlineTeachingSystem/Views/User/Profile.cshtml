@@ -9,7 +9,14 @@
             <p class="article-description">@Model.Mail</p>
             <hr />
         </div>
-        <form class="" action="/User/UserInfoUpdate"method="post" id="signupForm" style="width: 400px">
+        <form class="" action="/User/UserInfoUpdate" method="post" id="signupForm" style="width: 400px">
+            @if (Model.Mail == "admin@ots.com")
+            {
+                <h2>Manage Content</h2>
+                <a class="btn btn-md btn-primary btn-block profile-btn" href="/article/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add article</a>
+                <a class="btn btn-md btn-primary btn-block profile-btn" href="/exam/add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Exam</a>
+                <hr />
+            }
             <h2>Change Password</h2>
             <div class="form-group">
                 <label class="control-label" for="inputPassword">New Password</label>

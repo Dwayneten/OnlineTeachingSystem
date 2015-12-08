@@ -4,9 +4,9 @@
 @using OnlineTeachingSystem.ViewModels
 @model SideBarViewModel
 <ul class="nav nav-sidebar">
-    <li><a href="/">Home</a></li>
-    <li><a href="/article">Tutorial</a></li>
-    <li><a href="/exam">Exam</a></li>
-    <li><a href="/home/about">About</a></li>
+    <li><a href="/"><span class="glyphicon glyphicon-home sidebar-icon" aria-hidden="true"></span>Home</a></li>
+    <li><a href="/article"><span class="glyphicon glyphicon-book sidebar-icon" aria-hidden="true"></span>Tutorial</a></li>
+    <li><a href="/exam"><span class="glyphicon glyphicon-pencil sidebar-icon" aria-hidden="true"></span>Exam</a></li>
+    <li><a href="/home/about"><span class="glyphicon glyphicon-bookmark sidebar-icon" aria-hidden="true"></span>About</a></li>
     <li style="display:none">@Model.CurrentIndex</li>
 </ul>

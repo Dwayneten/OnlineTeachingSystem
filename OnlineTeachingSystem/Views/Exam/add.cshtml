@@ -12,14 +12,44 @@
                 <form class="" action="/Exam/UploadExam" method="post" enctype="multipart/form-data" id="addExamForm">
                     <div class="form-group">
                         <label class="control-label" for="inputPath">Select Excel File</label>
-                        <input type="file" class="" id="inputPath" name="examFile">
                         <p>Note that we support Microsoft Office Excel files only(.xls/.xlsx).</p>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <span class="btn btn-primary btn-file">
+                                    Browse&hellip; <input type="file" id="inputPath" name="examFile" multiple>
+                                </span>
+                            </span>
+                            <input type="text" class="form-control" readonly>
+                        </div>
                     </div>
                     <div id="ots-alert" class="alert add-exam-alert alert-@Model.AlertType" style="display:none">@Model.Message</div>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return checkAddExam();">Add exam</button>
+                    <button class="btn btn-md btn-primary btn-block add-exam-btn" type="submit" onclick="return checkAddExam();">Add exam</button>
+                    <button class="btn btn-md btn-warning btn-block add-exam-btn" type="reset">Reset</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $(document).on('change', '.btn-file :file', function () {
+        var input = $(this),
+            numFiles = input.get(0).files ? input.get(0).files.length : 1,
+            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+        input.trigger('fileselect', [numFiles, label]);
+    });
+    $(document).ready(function () {
+        $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
+
+            var input = $(this).parents('.input-group').find(':text'),
+                log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+            if (input.length) {
+                input.val(log);
+            } else {
+                if (log) alert(log);
+            }
+
+        });
+    });
+</script>
 <script>showAlert();</script>

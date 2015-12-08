@@ -17,7 +17,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a id="nav-left" href="@Model.LeftLink">@Model.LeftText</a></li>
+                <li id="nav-li-left"><a id="nav-left" href="@Model.LeftLink">@Model.LeftText</a></li>
                 <li><a href="@Model.RightLink">@Model.RightText</a></li>
             </ul>
         </div>
@@ -40,7 +40,7 @@
                         <label class="control-label" for="loginPassword">Password</label>
                         <input type="password" class="form-control" id="loginPassword" placeholder="Password" required="" name="Password">
                     </div>
-                    <div id="login-alert" class="alert alert-@Model.AlertType" style="display:none">@Model.Message</div>
+                    <div id="login-alert" class="alert alert-@Model.AlertType" style="display:none"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>@Model.Message</div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
