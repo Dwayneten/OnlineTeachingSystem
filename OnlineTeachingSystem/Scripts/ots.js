@@ -75,7 +75,7 @@ function addLoginAttr() {
             size: 40,
             text: $('#nav-left')[0].innerHTML.toUpperCase()[0],
             textBaseline: "middle",
-            fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif"
+            fontFamily: "'Microsoft Jhenghei', 'Helvetica Neue',Helvetica,Arial,sans-serif"
         });
         $(avatar).addClass('user-icon');
         avatar.onclick = function(){

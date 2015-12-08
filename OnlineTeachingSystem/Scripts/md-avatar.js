@@ -33,7 +33,7 @@
             textColor: 'white',
             textAlign: 'center',
             textBaseline: 'middle',
-            fontFamily: 'sans-serif',
+            fontFamily: 'Microsoft Jhenghei',
             fontWeight: 'bolder'
         };
 
