@@ -2,14 +2,14 @@
 @model ProfileViewModel
 @{ViewBag.Title = "Profile";}
 <!-- Create by Dwayne 2015-12-4 17:39:35 -->
-<div class="row exam">
+<div class="row">
     <div class="col-sm-12 col-md-8 blog-main">
         <div class="article-header">
             <h1 class="article-title">@Model.NickName</h1>
             <p class="article-description">@Model.Mail</p>
             <hr />
         </div>
-        <form class="" action="/User/UserInfoUpdate" method="post" id="signupForm" style="width: 400px">
+        <form class="" action="/User/UserInfoUpdate" method="post" id="changePasswordForm">
             @if (Model.Mail == "admin@ots.com")
             {
                 <h2>Manage Content</h2>
