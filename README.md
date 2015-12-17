@@ -12,7 +12,7 @@ Check the [wiki](https://github.com/Dwayneten/OnlineTeachingSystem/wiki) of this
 
 2. Open .sln file.
 
-3. Use NuGet to download the packages or download it from [here](http://pan.baidu.com/s/1gdkAm23) and unpack it to root folder of your project.
+3. Use NuGet to download the packages or download it from [here](http://pan.baidu.com/s/1kUoRXYJ) and unpack it to root folder of your project.
 
 **Note:**
 
